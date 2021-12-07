@@ -1,6 +1,9 @@
 const { Pokemon, Type } = require("../db.js");
 const axios = require("axios");
 
+// DB ID
+let dbId = 40;
+
 // Get Pokemons from API
 async function getPokemonsAPI() {
   try {
@@ -39,9 +42,63 @@ async function getAllPokemons() {
   return [...dbPokemons, ...ApiPokemons];
 }
 
+// Add pokemon to DB
+async function addPokemon(req, res) {
+  const {
+    hpBody,
+    attackBody,
+    defenseBody,
+    speedBody,
+    heightBody,
+    weightBody,
+    imageBody,
+  } = req.body;
+  let nameBody = req.body.name ? req.body.name.toLowerCase() : req.body;
+  let pokemon = {
+    id: ++dbId,
+    name: nameBody,
+    hp: hpBody,
+    attack: attackBody,
+    defense: defenseBody,
+    speed: speedBody,
+    height: heightBody,
+    weight: weightBody,
+    image: imageBody,
+  };
+  try {
+    const createdPokemon = await Pokemon.create(pokemon);
+    return res.send(createdPokemon);
+  } catch (error) {
+    return error;
+  }
+}
+
+// Add type of pokemons to DB
+
+async function getPokemonTypes() {
+  let pokemonDb = await Type.findAll();
+  if (pokemonDb.length > 0) {
+    return pokemonDb;
+  } else {
+    const response = await axios.get("https://pokeapi.co/api/v2/type");
+    const data = Promise.all(
+      response.data.results.map(async (t, index) => {
+        let types = await Type.create({
+          id: index + 1,
+          name: t.name,
+        });
+        return types;
+      })
+    );
+    return data;
+  }
+}
+
 module.exports = {
   getPokemonsAPI,
   getAllPokemons,
+  addPokemon,
+  getPokemonTypes,
 };
 
 // DB

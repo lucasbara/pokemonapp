@@ -1,6 +1,10 @@
 const { Router } = require("express");
 const axios = require("axios");
-const { getPokemonsAPI } = require("../helper/helper.js");
+const {
+  getPokemonsAPI,
+  addPokemon,
+  getPokemonTypes,
+} = require("../handlers/helper.js");
 const { Pokemon, Type } = require("../db.js");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -18,17 +22,19 @@ const router = Router();
 router.get("/pokemons", async (req, res) => {
   let { name } = req.query;
   if (name) {
-    name.toLowerCase();
     const pokemonDB = await Pokemon.findAll({
       where: {
-        name: name,
+        name: req.query.name.toLowerCase(),
       },
     });
-    if (pokemonDB.length > 1) {
+    console.log(pokemonDB);
+    if (pokemonDB.length) {
       return res.json(pokemonDB);
     } else {
       const pokemonsApi = await getPokemonsAPI();
-      const foundPokemon = pokemonsApi.find((p) => p.name === name);
+      const foundPokemon = pokemonsApi.find(
+        (p) => p.name === name.toLowerCase()
+      );
       if (foundPokemon) {
         return res.json(foundPokemon);
       } else {
@@ -58,6 +64,15 @@ router.get("/pokemons/:idPokemon", async (req, res) => {
     }
   }
   return res.send("El ID debe ser un número").status(404);
+});
+
+router.post("/pokemons", async (req, res) => {
+  await addPokemon(req, res);
+});
+
+router.get("/types", async (req, res) => {
+  const pokemonTypes = await getPokemonTypes();
+  return res.json(pokemonTypes);
 });
 
 module.exports = router;
