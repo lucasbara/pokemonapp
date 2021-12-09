@@ -1,0 +1,105 @@
+:root {
+  --main-color: #f1f1f1;
+  --secondary-color: #b8c370;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background: linear-gradient(120deg, #f1f1f1 50%, #b8c370 0%);
+  width: 100vw;
+  font-family: "Roboto", sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 50px;
+}
+
+.header img {
+  width: 200px;
+  margin-left: 2vw;
+}
+
+.header button {
+  border-radius: 12px;
+  margin-right: 25px;
+  width: 5vw;
+  height: 5vh;
+  border: none;
+  background-color: var(--main-color);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.header button:hover {
+  background: #fff;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mainText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainText button {
+  background-color: #000;
+  color: white;
+  width: 10vw;
+  height: 5vh;
+  border-radius: 12px;
+  margin-top: 20px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.mainText button:hover {
+  background-color: var(--main-color);
+  color: black;
+  border: 2px solid #000;
+}
+
+.main h1 {
+  display: block;
+  font-size: 70px;
+}
+
+.main p {
+  width: 33vw;
+  margin-left: 20px;
+}
+
+.main img {
+  padding-right: 20px;
+}
+
+.mainBottom {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.mainBottom img {
+  width: 200px;
+  height: 140px;
+  border-radius: 18px;
+  padding: 8px;
+  margin-left: 20px;
+}

@@ -1,9 +1,14 @@
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Route, Switch } from "react-router-dom";
+import Landing from "./components/Landing/Landing.jsx";
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Pokemon</h1>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+      </Switch>
     </div>
   );
 }
