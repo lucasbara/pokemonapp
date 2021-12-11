@@ -1,13 +1,10 @@
-body {
-  background: linear-gradient(120deg, #f1f1f1 50%, #b8c370 0%);
-}
-
 .footer {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   height: 30vh;
+  background: transparent;
 }
 
 .footer p {

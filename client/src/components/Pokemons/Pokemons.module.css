@@ -1,0 +1,10 @@
+.pokemons {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  order: 3;
+  width: 100vw;
+  flex-basis: 33.33%;
+}
