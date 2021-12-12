@@ -9,8 +9,10 @@ function Home() {
   return (
     <div>
       <Header />
-      <Pokemons />
-      <Footer />
+      <div className={style.main}>
+        <Pokemons />
+        <Footer />
+      </div>
     </div>
   );
 }

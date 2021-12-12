@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import style from "./App.module.css";
 import { Route, Switch } from "react-router-dom";
 import Landing from "./components/Landing/Landing.jsx";
 import Home from "./components/Home/Home.jsx";
@@ -7,10 +7,12 @@ import Home from "./components/Home/Home.jsx";
 function App() {
   return (
     <React.Fragment>
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/home" component={Home} />
-      </Switch>
+      <div className={style.app}>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/home" component={Home} />
+        </Switch>
+      </div>
     </React.Fragment>
   );
 }

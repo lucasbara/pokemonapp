@@ -6,6 +6,7 @@ import Landing2 from "../../img/landing2.jpg";
 import style from "./Landing.module.css";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import Pikachu from "../../img/pikachu.png";
 
 function Landing() {
   return (
@@ -28,7 +29,7 @@ function Landing() {
               <button>Enter the Pokeworld</button>
             </Link>
           </div>
-          <img src={Charizard} alt="Charizard" />
+          <img src={Pikachu} alt="Charizard" />
         </div>
       </div>
       <Footer></Footer>
