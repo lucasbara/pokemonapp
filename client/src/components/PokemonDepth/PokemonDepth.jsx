@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import style from "../Pokemon/Pokemon.module.css";
+import style from "./PokemonDepth.module.css";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import { MdOutlineHealthAndSafety } from "react-icons/md";
@@ -16,7 +16,7 @@ function Pokemon({ name, type, image, hp, attack, defense, speed }) {
   let { id } = useParams();
   useEffect(() => {
     dispatch(getPokemonById(id));
-  });
+  }, []);
   if (pokemonByID === null) {
     return (
       <div>
@@ -33,15 +33,17 @@ function Pokemon({ name, type, image, hp, attack, defense, speed }) {
     return (
       <div>
         <Header />
-        <div className={style.card}>
-          <img
-            src={pokemonByID.image}
-            alt={pokemonByID.name}
-            className={style.pokemonImg}
-          />
-          <p>{type}</p>
-          <div className={style.cardGradient}>
-            <p className={style.pokemonName}>{pokemonByID.name}</p>
+        <div className={style.container}>
+          <div className={style.card}>
+            <img
+              src={pokemonByID.image}
+              alt={pokemonByID.name}
+              className={style.pokemonImg}
+            />
+            <p>{type}</p>
+            <div className={style.cardGradient}>
+              <p className={style.pokemonName}>{pokemonByID.name}</p>
+            </div>
           </div>
         </div>
         <Footer />
