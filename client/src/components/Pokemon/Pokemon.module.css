@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;700&display=swap");
 
 .card {
   width: 18vw;
@@ -22,14 +22,18 @@
   );
   height: 30%;
   width: 100%;
-  border-radius: 12px 12px 0px 0px;
+  /* border-radius: 12px 12px 0px 0px; */ /* Top Left, Top Right, Bottom Right, Bottom Left*/
+  border-radius: 0px 0px 12px 12px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
+  margin-top: 40px;
   z-index: 1;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
   text-transform: capitalize;
+  font-size: 25px;
   object-fit: cover;
   flex-grow: auto;
 }
@@ -50,6 +54,7 @@
 
 .card img {
   width: 150px;
+  margin-top: 40px;
 }
 
 .cardStats {

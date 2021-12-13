@@ -3,10 +3,11 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 30vh;
+  height: 25vh;
   background: transparent;
 }
 
 .footer p {
   word-spacing: 1px;
+  padding-bottom: 10px;
 }

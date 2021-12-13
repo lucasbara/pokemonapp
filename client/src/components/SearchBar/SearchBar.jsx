@@ -1,13 +1,21 @@
 import { React, useState } from "react";
 import style from "./SearchBar.module.css";
-import Logo from "../../img/logo.png";
-import { Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { getPokemonByName } from "../../actions/index.js";
 
 function SearchBar() {
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const handleChange = (e) => {
     setSearch(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (search) {
+      dispatch(getPokemonByName(search));
+      setSearch("");
+    }
   };
   return (
     <div>
@@ -19,7 +27,7 @@ function SearchBar() {
             placeholder="Search for a Pokemon"
             onChange={handleChange}
           />
-          <button>
+          <button onClick={handleSubmit}>
             <BiSearch />
           </button>
         </div>

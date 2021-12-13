@@ -11,9 +11,11 @@ function Header() {
         <Link to="/home">
           <img src={Logo} alt="Pokémon Logo" className={style.logo} />
         </Link>
-        <SearchBar />
+        <SearchBar className={style.searchBar} />
         <ul>
-          <a>Add Pokemon</a>
+          <Link style={{ textDecoration: "none", color: "black" }}>
+            <a>Add Pokemon (+)</a>
+          </Link>
         </ul>
       </div>
     </div>

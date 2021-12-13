@@ -4,16 +4,22 @@ import { MdOutlineHealthAndSafety } from "react-icons/md";
 import { GiCrossedSwords } from "react-icons/gi";
 import { BsShieldPlus } from "react-icons/bs";
 import { GiQuickSlash } from "react-icons/gi";
+import { useDispatch } from "react-redux";
+import { getPokemonById } from "../../actions";
 
-function Pokemon({ name, type, image, hp, attack, defense, speed }) {
+function Pokemon({ name, id, type, image, hp, attack, defense, speed }) {
+  /*const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    dispatch(getPokemonById(id));
+  };*/
   return (
     <div>
       <div className={style.card}>
-        <div className={style.cardGradient}>
-          <h2 className={style.pokemonName}>{name}</h2>
-        </div>
         <img src={image} alt={name} className={style.pokemonImg} />
         <p>{type}</p>
+        <div className={style.cardGradient}>
+          <p className={style.pokemonName}>{name}</p>
+        </div>
       </div>
     </div>
   );

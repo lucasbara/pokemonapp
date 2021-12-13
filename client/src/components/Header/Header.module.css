@@ -6,7 +6,7 @@
   height: 10vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   font-family: "Roboto", sans-serif;
 }
@@ -14,10 +14,9 @@
 .header img {
   width: 200px;
   height: 74px;
-  margin-left: 2vw;
 }
 
 .header ul {
-  margin-right: 2vw;
   text-transform: uppercase;
+  font-weight: 500;
 }

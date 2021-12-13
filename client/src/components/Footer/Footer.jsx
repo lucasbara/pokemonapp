@@ -10,7 +10,8 @@ function Footer() {
       <div className={style.footer}>
         <p>
           <BiCodeAlt />
-          with <AiFillHeart /> by Lucas using <DiReact />
+          &ensp;with&ensp;
+          <AiFillHeart /> by Lucas Barallobre using <DiReact />
         </p>
       </div>
     </div>
