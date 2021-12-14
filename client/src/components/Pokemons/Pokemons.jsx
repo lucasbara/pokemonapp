@@ -3,19 +3,26 @@ import style from "./Pokemons.module.css";
 import Pokemon from "../Pokemon/Pokemon.jsx";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPokemons } from "../../actions/index.js";
+import {
+  getAllPokemons,
+  nextPage,
+  filteredPokemons,
+} from "../../actions/index.js";
 import axios from "axios";
 
 function Pokemons() {
   const dispatch = useDispatch();
-  const allPokemons = useSelector((state) => state.allPokemons);
+  const filteredPokemons1 = useSelector((state) => state.filteredPokemons);
+  const currentPage = useSelector((state) => state.currentPage);
   useEffect(() => {
     dispatch(getAllPokemons());
   }, []);
-  console.log(allPokemons);
+  useEffect(() => {
+    dispatch(filteredPokemons(12));
+  }, [currentPage]);
   return (
     <div className={style.pokemons}>
-      {allPokemons.map((p) => (
+      {filteredPokemons1.map((p) => (
         <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
           <Pokemon
             name={p.name}

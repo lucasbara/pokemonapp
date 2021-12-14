@@ -5,9 +5,29 @@ export function getAllPokemons() {
     try {
       const response = await axios.get("http://localhost:3001/pokemons");
       dispatch({ type: "GET_ALL_POKEMONS", payload: response.data });
+      dispatch(filteredPokemons());
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function filteredPokemons(amount = 9) {
+  return {
+    type: "RECEIVE_FILTERED_POKEMONS",
+    payload: amount,
+  };
+}
+
+export function nextPage() {
+  return {
+    type: "NEXT_PAGE",
+  };
+}
+
+export function previousPage() {
+  return {
+    type: "PREVIOUS_PAGE",
   };
 }
 
