@@ -4,6 +4,7 @@ const {
   getPokemonsAPI,
   addPokemon,
   getPokemonTypes,
+  getAllPokemons,
 } = require("../handlers/helper.js");
 const { Pokemon, Type } = require("../db.js");
 // Importar todos los routers;
@@ -42,7 +43,7 @@ router.get("/pokemons", async (req, res) => {
       }
     }
   } else {
-    const pokemons = await getPokemonsAPI();
+    const pokemons = await getAllPokemons();
     return res.json(pokemons);
   }
 });
