@@ -5,14 +5,14 @@ export function getAllPokemons() {
     try {
       const response = await axios.get("http://localhost:3001/pokemons");
       dispatch({ type: "GET_ALL_POKEMONS", payload: response.data });
-      dispatch(filteredPokemons());
+      dispatch(filteredPokemons(9));
     } catch (error) {
       console.log(error);
     }
   };
 }
 
-export function filteredPokemons(amount = 9) {
+export function filteredPokemons(amount = 12) {
   return {
     type: "RECEIVE_FILTERED_POKEMONS",
     payload: amount,

@@ -17,18 +17,28 @@ const rootReducer = (state = initialState, action) => {
         allPokemons: [...action.payload],
       };
     case "RECEIVE_FILTERED_POKEMONS":
-      return {
-        ...state,
-        filteredPokemons: state.allPokemons.slice(
-          state.currentPage,
-          state.currentPage + action.payload
-        ),
-      };
+      if (state.currentPage == 0) {
+        return {
+          ...state,
+          filteredPokemons: state.allPokemons.slice(
+            state.currentPage,
+            state.currentPage + 9
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          filteredPokemons: state.allPokemons.slice(
+            state.currentPage,
+            state.currentPage + action.payload
+          ),
+        };
+      }
     case "NEXT_PAGE":
       if (state.currentPage < 36) {
         return {
           ...state,
-          currentPage: state.currentPage + 9,
+          currentPage: state.currentPage + state.amountOfPokemons,
         };
       } else {
         return {
@@ -40,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
       if (state.currentPage > 0) {
         return {
           ...state,
-          currentPage: state.currentPage - 9,
+          currentPage: state.currentPage - state.amountOfPokemons,
         };
       }
     case "GET_POKEMON_BY_NAME":

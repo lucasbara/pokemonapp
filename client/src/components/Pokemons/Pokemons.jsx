@@ -8,17 +8,20 @@ import {
   nextPage,
   filteredPokemons,
 } from "../../actions/index.js";
-import axios from "axios";
 
 function Pokemons() {
   const dispatch = useDispatch();
   const filteredPokemons1 = useSelector((state) => state.filteredPokemons);
+  const displayAmountOfPokemons = useSelector(
+    (state) => state.amountOfPokemons
+  );
   const currentPage = useSelector((state) => state.currentPage);
   useEffect(() => {
     dispatch(getAllPokemons());
   }, []);
   useEffect(() => {
-    dispatch(filteredPokemons(12));
+    dispatch(filteredPokemons());
+    console.log(currentPage);
   }, [currentPage]);
   return (
     <div className={style.pokemons}>
