@@ -26,7 +26,7 @@ function Pokemons() {
         <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
           <Pokemon
             name={p.name}
-            type={p.type}
+            types={p.types}
             image={p.image}
             hp={p.hp}
             attack={p.attack}

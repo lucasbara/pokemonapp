@@ -7,7 +7,7 @@ import { GiQuickSlash } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { getPokemonById } from "../../actions";
 
-function Pokemon({ name, id, type, image, hp, attack, defense, speed }) {
+function Pokemon({ name, id, types, image, hp, attack, defense, speed }) {
   /*const dispatch = useDispatch();
   const handleSubmit = (e) => {
     dispatch(getPokemonById(id));
@@ -16,9 +16,13 @@ function Pokemon({ name, id, type, image, hp, attack, defense, speed }) {
     <div>
       <div className={style.card}>
         <img src={image} alt={name} className={style.pokemonImg} />
-        <p>{type}</p>
         <div className={style.cardGradient}>
           <p className={style.pokemonName}>{name}</p>
+          <div className={style.types}>
+            {types.map((type) => (
+              <p>{type}</p>
+            ))}
+          </div>
         </div>
       </div>
     </div>
