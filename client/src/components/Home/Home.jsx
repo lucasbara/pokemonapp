@@ -14,14 +14,20 @@ import axios from "axios";
 
 function Home() {
   const dispatch = useDispatch();
+  const searchedPokemon = useSelector((state) => state.filteredPokemons);
   const nextPageBtn = (e) => {
     e.preventDefault();
+    if (searchedPokemon.length === 1) return;
     dispatch(nextPage());
   };
   const previousPageBtn = (e) => {
     e.preventDefault();
+    if (searchedPokemon.length === 1) return;
     dispatch(previousPage());
   };
+  useEffect(() => {
+    console.log(searchedPokemon);
+  }, [searchedPokemon]);
   return (
     <div>
       <Header />

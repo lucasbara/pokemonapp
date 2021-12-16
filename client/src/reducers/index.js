@@ -1,4 +1,4 @@
-import { filteredPokemons } from "../actions";
+import { receivePokemons } from "../actions";
 
 const initialState = {
   allPokemons: [],
@@ -14,9 +14,9 @@ const rootReducer = (state = initialState, action) => {
     case "GET_ALL_POKEMONS":
       return {
         ...state,
-        allPokemons: [...action.payload],
+        allPokemons: action.payload,
       };
-    case "RECEIVE_FILTERED_POKEMONS":
+    case "RECEIVE_POKEMONS":
       if (state.currentPage == 0) {
         return {
           ...state,
@@ -53,11 +53,36 @@ const rootReducer = (state = initialState, action) => {
           currentPage: state.currentPage - state.amountOfPokemons,
         };
       }
+    case "CLEAR STATE":
+      if (state.currentPage == 0) {
+        return {
+          ...state,
+          filteredPokemons: state.allPokemons.slice(
+            state.currentPage,
+            state.currentPage + 9
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          filteredPokemons: state.allPokemons.slice(
+            state.currentPage,
+            state.currentPage + 12
+          ),
+        };
+      }
     case "GET_POKEMON_BY_NAME":
-      return {
-        ...state,
-        pokemonByName: action.payload,
-      };
+      if (action.payload.name) {
+        return {
+          ...state,
+          filteredPokemons: [action.payload],
+        };
+      } else {
+        return {
+          ...state,
+          filteredPokemons: null,
+        };
+      }
     case "GET_POKEMON_BY_ID":
       return {
         ...state,

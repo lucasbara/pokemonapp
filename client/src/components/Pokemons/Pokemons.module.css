@@ -8,3 +8,10 @@
   width: 100vw;
   flex-basis: 33.33%;
 }
+
+.notFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}

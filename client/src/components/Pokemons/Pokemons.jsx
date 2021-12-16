@@ -6,40 +6,42 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAllPokemons,
   nextPage,
-  filteredPokemons,
+  receivePokemons,
 } from "../../actions/index.js";
 
 function Pokemons() {
   const dispatch = useDispatch();
   const filteredPokemons1 = useSelector((state) => state.filteredPokemons);
-  const displayAmountOfPokemons = useSelector(
-    (state) => state.amountOfPokemons
-  );
   const currentPage = useSelector((state) => state.currentPage);
+  const pokemonName = useSelector((state) => state.pokemonByName);
   useEffect(() => {
     dispatch(getAllPokemons());
   }, []);
   useEffect(() => {
-    dispatch(filteredPokemons());
+    dispatch(receivePokemons());
     console.log(currentPage);
   }, [currentPage]);
-  return (
-    <div className={style.pokemons}>
-      {filteredPokemons1.map((p) => (
-        <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
-          <Pokemon
-            name={p.name}
-            types={p.types}
-            image={p.image}
-            hp={p.hp}
-            attack={p.attack}
-            defense={p.defense}
-            speed={p.speed}
-          />
-        </Link>
-      ))}
-    </div>
-  );
+  if (filteredPokemons1) {
+    return (
+      <div className={style.pokemons}>
+        {filteredPokemons1.map((p) => (
+          <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
+            <Pokemon
+              name={p.name}
+              types={p.types}
+              image={p.image}
+              hp={p.hp}
+              attack={p.attack}
+              defense={p.defense}
+              speed={p.speed}
+            />
+          </Link>
+        ))}
+      </div>
+    );
+  } else {
+    return <h1 className={style.notFound}>Pokemon not found...</h1>;
+  }
 }
 
 export default Pokemons;
