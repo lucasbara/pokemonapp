@@ -64,3 +64,14 @@ export function getPokemonById(id) {
     }
   };
 }
+
+export function getPokemonTypes() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/types");
+      dispatch({ type: "GET_POKEMON_TYPES", payload: response.data });
+    } catch (error) {
+      console.log("Get pokemon types:", error);
+    }
+  };
+}

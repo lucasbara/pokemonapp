@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllPokemons,
-  nextPage,
+  getPokemonTypes,
   receivePokemons,
 } from "../../actions/index.js";
 
@@ -16,6 +16,7 @@ function Pokemons() {
   const pokemonName = useSelector((state) => state.pokemonByName);
   useEffect(() => {
     dispatch(getAllPokemons());
+    dispatch(getPokemonTypes());
   }, []);
   useEffect(() => {
     dispatch(receivePokemons());

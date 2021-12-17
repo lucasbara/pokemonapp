@@ -1,8 +1,9 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.bigContainer {
   background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card {
@@ -100,4 +101,38 @@
 .icon {
   font-size: 35px;
   color: #34d399;
+}
+
+.empty {
+  min-height: 9vh;
+  margin-top: 5px;
+}
+
+.types {
+  display: flex;
+  flex-direction: row;
+  font-size: 50%;
+  text-transform: uppercase;
+}
+
+.types p {
+  margin: 10px 10px;
+  padding: 6px;
+  background-image: radial-gradient(
+    circle 588px at 31.7% 40.2%,
+    rgba(225, 200, 239, 1) 21.4%,
+    rgba(163, 225, 233, 1) 57.1%
+  );
+  color: #000;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.upper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 200px;
+  align-items: center;
+  background-color: green;
 }

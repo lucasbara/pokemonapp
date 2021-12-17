@@ -28,7 +28,10 @@ function Header() {
         </Link>
         <SearchBar className={style.searchBar} />
         <ul>
-          <Link style={{ textDecoration: "none", color: "black" }}>
+          <Link
+            to="/addpokemon"
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <a>Add Pokemon (+)</a>
           </Link>
         </ul>

@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+
+.container {
+  background-color: #f2f2f2;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.main {
+  margin-top: 100px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  width: 60vw;
+}
+
+.form {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.formColumn img {
+  width: 120px;
+  margin-left: 100px;
+}
+
+/*.form div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 10vh;
+  margin: 10px 4px;
+} */
+
+.form ::placeholder {
+  font-size: 14px;
+}
+
+.form select {
+  text-align: center;
+  border-color: transparent;
+  width: 10vw;
+  height: 3vh;
+  margin: 0px 5px;
+  padding: 2px;
+  border-radius: 6px;
+  border: 0px solid none;
+}
+
+.form input {
+  height: 3vh;
+  width: 20vw;
+  text-align: center;
+  padding: 2px;
+  border-radius: 6px;
+  border-color: transparent;
+  margin: 10px 4px;
+}
+
+.form div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.errors {
+  display: block;
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.btn {
+  margin: 20px 0px;
+  height: 5vh;
+  width: 20vw;
+  background-color: #000;
+  color: white;
+  font-size: 16px;
+  border-radius: 12px;
+  border-color: transparent;
+  font-weight: 500;
+}
+
+.btn:hover {
+  margin: 20px 0px;
+  height: 5vh;
+  width: 20vw;
+  background-color: #ffffff;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1px solid #000;
+}

@@ -25,9 +25,6 @@ function Home() {
     if (searchedPokemon.length === 1) return;
     dispatch(previousPage());
   };
-  useEffect(() => {
-    console.log(searchedPokemon);
-  }, [searchedPokemon]);
   return (
     <div>
       <Header />

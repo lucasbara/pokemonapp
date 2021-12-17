@@ -8,10 +8,10 @@ import { useDispatch } from "react-redux";
 import { getPokemonById } from "../../actions";
 
 function Pokemon({ name, id, types, image, hp, attack, defense, speed }) {
-  /*const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     dispatch(getPokemonById(id));
-  };*/
+  };
   return (
     <div>
       <div className={style.card}>
@@ -30,34 +30,3 @@ function Pokemon({ name, id, types, image, hp, attack, defense, speed }) {
 }
 
 export default Pokemon;
-
-/*<div className={style.cardStats}>
-<div className={style.containerIcon}>
-  <MdOutlineHealthAndSafety className={style.icon} />
-  <div>
-    <p>Health</p>
-    {hp}
-  </div>
-</div>
-<div className={style.containerIcon}>
-  <GiCrossedSwords className={style.icon} />
-  <div>
-    <p>Attack</p>
-    {attack}
-  </div>
-</div>
-<div className={style.containerIcon}>
-  <BsShieldPlus className={style.icon} />
-  <div>
-    <p>Defense</p>
-    {defense}
-  </div>
-</div>
-<div className={style.containerIcon}>
-  <GiQuickSlash className={style.icon} />
-  <div>
-    <p>Speed</p>
-    {speed}
-  </div>
-</div>
-</div> */
