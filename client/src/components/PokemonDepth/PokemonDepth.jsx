@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import style from "./PokemonDepth.module.css";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
-import { MdOutlineHealthAndSafety } from "react-icons/md";
+import { MdOutlineHeight } from "react-icons/md";
 import { GiCrossedSwords } from "react-icons/gi";
-import { BsShieldPlus } from "react-icons/bs";
-import { GiQuickSlash } from "react-icons/gi";
+import { AiFillThunderbolt, AiFillFire } from "react-icons/ai";
+import { BsShieldFillPlus } from "react-icons/bs";
+import { GiQuickSlash, GiWeight } from "react-icons/gi";
+import { FaHeart, FaRulerVertical } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPokemonById } from "../../actions";
+import { getPokemonById, clearPokemonById } from "../../actions";
 
 function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
   const dispatch = useDispatch();
@@ -16,7 +18,8 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
   let { id } = useParams();
   useEffect(() => {
     dispatch(getPokemonById(id));
-    console.log("pokemon", pokemonByID);
+    dispatch(clearPokemonById());
+    console.log(pokemonByID);
   }, []);
   if (pokemonByID === null) {
     return (
@@ -45,18 +48,36 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
                 />
               </div>
               <div className={style.stats}>
-                <h4>Hp</h4>
-                <p>{pokemonByID.hp}</p>
-                <h4>Speed</h4>
-                <p>{pokemonByID.speed}</p>
-                <h4>Attack</h4>
-                <p>{pokemonByID.attack}</p>
-                <h4>Defense</h4>
-                <p>{pokemonByID.defense}</p>
-                <h4>Height</h4>
-                <p>{pokemonByID.height}</p>
-                <h4>Weight</h4>
-                <p>{pokemonByID.weight}</p>
+                <div className={style.statsCard}>
+                  <FaHeart className={style.icon} />
+                  <h4>Health</h4>
+                  <p>{pokemonByID.hp}</p>
+                </div>
+                <div className={style.statsCard}>
+                  <AiFillThunderbolt className={style.icon} />
+                  <h4>Speed</h4>
+                  <p>{pokemonByID.speed}</p>
+                </div>
+                <div className={style.statsCard}>
+                  <AiFillFire className={style.icon} />
+                  <h4>Attack</h4>
+                  <p>{pokemonByID.attack}</p>
+                </div>
+                <div className={style.statsCard}>
+                  <BsShieldFillPlus className={style.icon} />
+                  <h4>Defense</h4>
+                  <p>{pokemonByID.defense}</p>
+                </div>
+                <div className={style.statsCard}>
+                  <FaRulerVertical className={style.icon} />
+                  <h4>Height</h4>
+                  <p>{pokemonByID.height}</p>
+                </div>
+                <div className={style.statsCard}>
+                  <GiWeight className={style.icon} />
+                  <h4>Weight</h4>
+                  <p>{pokemonByID.weight}</p>
+                </div>
               </div>
             </div>
             <div className={style.cardGradient}>
@@ -76,34 +97,3 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
 }
 
 export default PokemonDepth;
-
-/*<div className={style.cardStats}>
-<div className={style.containerIcon}>
-  <MdOutlineHealthAndSafety className={style.icon} />
-  <div>
-    <p>Health</p>
-    {hp}
-  </div>
-</div>
-<div className={style.containerIcon}>
-  <GiCrossedSwords className={style.icon} />
-  <div>
-    <p>Attack</p>
-    {attack}
-  </div>
-</div>
-<div className={style.containerIcon}>
-  <BsShieldPlus className={style.icon} />
-  <div>
-    <p>Defense</p>
-    {defense}
-  </div>
-</div>
-<div className={style.containerIcon}>
-  <GiQuickSlash className={style.icon} />
-  <div>
-    <p>Speed</p>
-    {speed}
-  </div>
-</div>
-</div> */

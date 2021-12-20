@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 4px 10px -3px rgba(0, 0, 0, 0.25);
+  box-shadow: -2px 5px 21px 4px rgba(44, 118, 255, 0.3);
 }
 
 .cardGradient {
@@ -26,7 +27,7 @@
     rgba(69, 133, 193, 0.8183648459383753) 0%,
     rgba(127, 159, 255, 0.742734593837535) 100%
   );
-  height: 30%;
+  height: 10vh;
   width: 100%;
   /* border-radius: 12px 12px 0px 0px; */ /* Top Left, Top Right, Bottom Right, Bottom Left*/
   border-radius: 0px 0px 12px 12px;
@@ -44,12 +45,6 @@
   flex-grow: auto;
 }
 
-.card:hover {
-  transform: scale(1.1);
-  box-shadow: -2px 5px 21px 4px rgba(44, 118, 255, 0.3);
-  cursor: pointer;
-}
-
 .card button {
   border-radius: 12px 12px 0px 0;
   width: 6vw;
@@ -59,48 +54,41 @@
 }
 
 .card img {
-  width: 150px;
+  width: 170px;
   margin-top: 40px;
+  margin-right: 130px;
 }
 
-.cardStats {
+.stats {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
   align-items: center;
   flex-wrap: wrap;
   padding: 10px 50px;
   margin-bottom: 20px;
+  margin-top: 80px;
 }
 
-.pokemonName {
-  margin-top: 10px;
+.statsCard {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  padding: 0 10px;
 }
 
-.pokemonImg {
-  padding: 15px 0px;
-  max-height: 25vh;
-}
-
-.containerIcon {
-  margin: 2px 40px;
-  text-transform: uppercase;
-  padding-bottom: 20px;
-  text-align: center;
-  font-weight: 700;
-}
-
-.containerIcon p {
-  font-weight: 700;
-}
-
-.title {
-  margin: 500px 0px;
+.statsCard h4 {
+  font-size: 15px;
+  text-transform: capitalize;
 }
 
 .icon {
-  font-size: 35px;
-  color: #34d399;
+  font-size: 30px;
+  color: #99b2f8;
 }
 
 .empty {
@@ -116,7 +104,7 @@
 }
 
 .types p {
-  margin: 10px 10px;
+  margin: 30px 10px;
   padding: 6px;
   background-image: radial-gradient(
     circle 588px at 31.7% 40.2%,
@@ -134,5 +122,4 @@
   justify-content: space-between;
   padding: 0 200px;
   align-items: center;
-  background-color: green;
 }

@@ -19,9 +19,7 @@ function Pokemon({ name, id, types, image, hp, attack, defense, speed }) {
         <div className={style.cardGradient}>
           <p className={style.pokemonName}>{name}</p>
           <div className={style.types}>
-            {types.map((type) => (
-              <p>{type}</p>
-            ))}
+            {types && types.map((type) => <p>{type}</p>)}
           </div>
         </div>
       </div>

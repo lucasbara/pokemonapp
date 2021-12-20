@@ -15,16 +15,24 @@ import axios from "axios";
 function Home() {
   const dispatch = useDispatch();
   const searchedPokemon = useSelector((state) => state.filteredPokemons);
+  const currentPage = useSelector((state) => state.currentPage);
   const nextPageBtn = (e) => {
     e.preventDefault();
     if (searchedPokemon.length === 1) return;
     dispatch(nextPage());
+    if (currentPage < 36) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
   const previousPageBtn = (e) => {
     e.preventDefault();
     if (searchedPokemon.length === 1) return;
     dispatch(previousPage());
+    if (currentPage !== 0) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
+
   return (
     <div>
       <Header />
@@ -33,7 +41,7 @@ function Home() {
           <Pokemons />
           <div className={style.buttons}>
             <button onClick={previousPageBtn}> Previous page </button>
-            <button onClick={nextPageBtn}> Next page </button>
+            <button onClick={nextPageBtn}>Next page </button>
           </div>
         </div>
         <Footer />

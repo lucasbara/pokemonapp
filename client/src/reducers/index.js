@@ -3,6 +3,7 @@ import { receivePokemons } from "../actions";
 const initialState = {
   allPokemons: [],
   filteredPokemons: [],
+  addedPokemon: undefined,
   pokemonByName: [],
   pokemonById: [],
   pokemonTypes: [],
@@ -89,10 +90,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemonById: action.payload,
       };
+    case "CLEAR_POKEMON_BY_ID":
+      return {
+        ...state,
+        pokemonById: [],
+      };
     case "GET_POKEMON_TYPES":
       return {
         ...state,
         pokemonTypes: [...action.payload],
+      };
+    case "ADD_POKEMON":
+      return {
+        ...state,
+        addedPokemon: action.payload,
       };
 
     default:

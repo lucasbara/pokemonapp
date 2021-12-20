@@ -76,6 +76,14 @@ h1 {
   margin: 10px 4px;
 }
 
+.form option {
+  text-transform: capitalize;
+}
+
+.form select {
+  text-transform: capitalize;
+}
+
 .form div {
   display: flex;
   flex-direction: row;
@@ -91,6 +99,7 @@ h1 {
   justify-content: center;
   align-items: center;
   margin-left: 10px;
+  font-weight: 700;
 }
 
 .btn {

@@ -3,7 +3,7 @@ import style from "./AddPokemon.module.css";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemonTypes } from "../../actions/index.js";
+import { getPokemonTypes, addPokemon } from "../../actions/index.js";
 import img from "../../img/addpokemon.png";
 
 function AddPokemon() {
@@ -12,7 +12,6 @@ function AddPokemon() {
 
   useEffect(() => {
     dispatch(getPokemonTypes());
-    console.log("Types in form", types);
   }, []);
 
   const [input, setInput] = useState({
@@ -35,12 +34,30 @@ function AddPokemon() {
       ...input,
       [e.target.name]: e.target.value,
     });
+    console.log(input);
     setErrors(
       validateForm({
         ...input,
         [e.target.name]: e.target.value,
       })
     );
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(addPokemon(input));
+    setInput({
+      name: "",
+      image: "",
+      type1: "",
+      type2: "",
+      height: "",
+      weight: "",
+      hp: "",
+      attack: "",
+      defense: "",
+      speed: "",
+    });
   }
 
   useEffect(() => {
@@ -55,7 +72,7 @@ function AddPokemon() {
           <div className={style.formColumn}>
             <img src={img}></img>
           </div>
-          <form className={style.form}>
+          <form className={style.form} onSubmit={handleSubmit}>
             <h1>Create a new pokemon</h1>
             <div className={style.input}>
               <input
@@ -93,7 +110,7 @@ function AddPokemon() {
               <select
                 name="type2"
                 onChange={handleInputChange}
-                value={input.type1}
+                value={input.type2}
               >
                 <option value="Type 2">Type 2</option>
                 {types &&
