@@ -42,10 +42,9 @@ router.get("/pokemons", async (req, res) => {
         return res.json("El nombre ingresado no pertenece a ningún pokemon");
       }
     }
-  } else {
-    const pokemons = await getAllPokemons();
-    return res.json(pokemons);
   }
+  const pokemons = await getAllPokemons();
+  return res.json(pokemons);
 });
 
 router.get("/pokemons/:idPokemon", async (req, res) => {
@@ -68,6 +67,7 @@ router.get("/pokemons/:idPokemon", async (req, res) => {
 });
 
 router.post("/pokemons", async (req, res) => {
+  console.log(req.body);
   await addPokemon(req, res);
 });
 

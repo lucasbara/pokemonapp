@@ -45,30 +45,22 @@ async function getAllPokemons() {
 
 // Add pokemon to DB
 async function addPokemon(req, res) {
-  const {
-    hpBody,
-    attackBody,
-    defenseBody,
-    speedBody,
-    heightBody,
-    weightBody,
-    imageBody,
-  } = req.body;
-  let nameBody = req.body.name ? req.body.name.toLowerCase() : req.body;
+  const { hp, attack, defense, speed, height, weight, image } = req.body;
+  let name = req.body.name ? req.body.name.toLowerCase() : req.body;
   let pokemon = {
     id: ++dbId,
-    name: nameBody,
-    hp: hpBody,
-    attack: attackBody,
-    defense: defenseBody,
-    speed: speedBody,
-    height: heightBody,
-    weight: weightBody,
-    image: imageBody,
+    name,
+    hp,
+    attack,
+    defense,
+    speed,
+    height,
+    weight,
+    image,
   };
   try {
     const createdPokemon = await Pokemon.create(pokemon);
-    return res.send(createdPokemon);
+    return res.status(200).send(createdPokemon);
   } catch (error) {
     return error;
   }
