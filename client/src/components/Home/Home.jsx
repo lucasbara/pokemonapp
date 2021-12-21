@@ -16,6 +16,8 @@ function Home() {
   const dispatch = useDispatch();
   const searchedPokemon = useSelector((state) => state.filteredPokemons);
   const currentPage = useSelector((state) => state.currentPage);
+  const pokemonByID = useSelector((state) => state.pokemonById);
+  console.log("PokemonByID", pokemonByID);
   const nextPageBtn = (e) => {
     e.preventDefault();
     if (searchedPokemon.length === 1) return;
@@ -39,10 +41,6 @@ function Home() {
       <div className={style.main}>
         <div className={style.min}>
           <Pokemons />
-          <div className={style.buttons}>
-            <button onClick={previousPageBtn}> Previous page </button>
-            <button onClick={nextPageBtn}>Next page </button>
-          </div>
         </div>
         <Footer />
       </div>

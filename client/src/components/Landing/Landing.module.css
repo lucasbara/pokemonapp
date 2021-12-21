@@ -117,3 +117,19 @@ body {
   padding-top: 20px;
   width: 600px;
 }
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 25vh;
+  background-color: transparent;
+}
+
+.footer p {
+  word-spacing: 1px;
+  padding-bottom: 10px;
+}

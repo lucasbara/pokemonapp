@@ -4,7 +4,7 @@
   justify-content: flex-end;
   align-items: center;
   height: 25vh;
-  background: transparent;
+  background-color: #f2f2f2;
 }
 
 .footer p {

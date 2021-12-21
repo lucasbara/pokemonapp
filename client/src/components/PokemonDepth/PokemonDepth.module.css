@@ -6,6 +6,13 @@
   align-items: center;
 }
 
+.goBack {
+  position: absolute;
+  transform: translate(-580%, 800%);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
 .card {
   width: 50vw;
   height: 40vh;
@@ -122,4 +129,15 @@
   justify-content: space-between;
   padding: 0 200px;
   align-items: center;
+}
+
+/* LOADING */
+
+.loadingContainer {
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
 }

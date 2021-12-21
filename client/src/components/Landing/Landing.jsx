@@ -1,12 +1,11 @@
 import React from "react";
 import Logo from "../../img/logo.png";
-import Charizard from "../../img/charizard.png";
-import Landing1 from "../../img/landing1.jpg";
-import Landing2 from "../../img/landing2.jpg";
+import Pikachu from "../../img/pikachu.png";
+import { AiFillHeart } from "react-icons/ai";
+import { BiCodeAlt } from "react-icons/bi";
+import { DiReact } from "react-icons/di";
 import style from "./Landing.module.css";
 import { Link } from "react-router-dom";
-import Footer from "../Footer/Footer";
-import Pikachu from "../../img/pikachu.png";
 
 function Landing() {
   return (
@@ -32,7 +31,13 @@ function Landing() {
           <img src={Pikachu} alt="Charizard" />
         </div>
       </div>
-      <Footer></Footer>
+      <div className={style.footer}>
+        <p>
+          <BiCodeAlt />
+          &ensp;with&ensp;
+          <AiFillHeart /> by Lucas Barallobre using <DiReact />
+        </p>
+      </div>
     </div>
   );
 }
