@@ -6,7 +6,7 @@
   background-color: #fff;
   border-radius: 12px;
   display: flex;
-  margin: 100px 35px 50px 100px; /* Top, Right, Bottom, Left */
+  margin: 40px 35px 110px 100px; /* Top, Right, Bottom, Left */
   flex-direction: column;
   align-items: center;
   justify-content: space-between;

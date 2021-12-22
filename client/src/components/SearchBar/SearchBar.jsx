@@ -18,7 +18,7 @@ function SearchBar() {
     }
   };
   return (
-    <div>
+    <div className={style.container}>
       <form>
         <div className={style.form}>
           <input

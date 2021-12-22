@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./Home.module.css";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
+import FilterBar from "../FilterBar/FilterBar.jsx";
 import Pokemons from "../Pokemons/Pokemons.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,28 +14,6 @@ import {
 import axios from "axios";
 
 function Home() {
-  const dispatch = useDispatch();
-  const searchedPokemon = useSelector((state) => state.filteredPokemons);
-  const currentPage = useSelector((state) => state.currentPage);
-  const pokemonByID = useSelector((state) => state.pokemonById);
-  console.log("PokemonByID", pokemonByID);
-  const nextPageBtn = (e) => {
-    e.preventDefault();
-    if (searchedPokemon.length === 1) return;
-    dispatch(nextPage());
-    if (currentPage < 36) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-  const previousPageBtn = (e) => {
-    e.preventDefault();
-    if (searchedPokemon.length === 1) return;
-    dispatch(previousPage());
-    if (currentPage !== 0) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
   return (
     <div>
       <Header />

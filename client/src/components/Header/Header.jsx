@@ -36,6 +36,7 @@ function Header() {
           </Link>
         </ul>
       </div>
+      <div className={style.line}></div>
     </div>
   );
 }

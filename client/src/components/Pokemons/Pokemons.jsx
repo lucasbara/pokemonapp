@@ -12,6 +12,7 @@ import {
   previousPage,
   receivePokemons,
 } from "../../actions/index.js";
+import FilterBar from "../FilterBar/FilterBar.jsx";
 
 function Pokemons() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function Pokemons() {
   } else if (filteredPokemons1.length) {
     return (
       <div>
+        <FilterBar />
         <div className={style.pokemons}>
           {filteredPokemons1.map((p) => (
             <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
