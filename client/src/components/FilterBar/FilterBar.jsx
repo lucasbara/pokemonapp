@@ -1,22 +1,45 @@
 import React, { useEffect } from "react";
 import style from "./FilterBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemonTypes } from "../../actions/index.js";
+import {
+  getPokemonTypes,
+  orderPokemon,
+  filterByType,
+  filterByCreator,
+} from "../../actions/index.js";
 
 function FilterBar() {
-  const types = useSelector((state) => state.pokemonTypes);
   const dispatch = useDispatch();
+  const types = useSelector((state) => state.pokemonTypes);
+  const pokemons = useSelector((state) => state.filteredPokemons);
 
   useEffect(() => {
     dispatch(getPokemonTypes());
   }, []);
+
+  useEffect(() => {
+    console.log(pokemons);
+  }, [pokemons]);
+
+  function order(e) {
+    dispatch(orderPokemon(e.target.value));
+  }
+
+  function filterType(e) {
+    dispatch(filterByType(e.target.value));
+  }
+
+  function filterCreator(e) {
+    if (e.target.value === "all") return;
+    dispatch(filterByCreator(e.target.value));
+  }
 
   return (
     <div className={style.bigContainer}>
       <div className={style.container}>
         <div className={style.filters}>
           <p>Filter by</p>
-          <select>
+          <select onChange={filterType}>
             <option>Type</option>
             {types &&
               types.map((type) => {
@@ -27,24 +50,24 @@ function FilterBar() {
                 );
               })}
           </select>
-          <select>
+          <select onChange={filterCreator}>
             <option>Source</option>
-            <option>All</option>
-            <option>Api</option>
-            <option>Db</option>
+            <option value="all">All</option>
+            <option value="false">Api</option>
+            <option value="true">Db</option>
           </select>
         </div>
         <div className={style.filters}>
           <p>Order by</p>
-          <select>
+          <select onChange={order}>
             <option>Alphabetical</option>
-            <option>Ascending</option>
-            <option>Descending</option>
+            <option value="asc">Ascending (A-Z)</option>
+            <option value="desc">Descending (Z-A)</option>
           </select>
-          <select>
+          <select onChange={order}>
             <option>Attack</option>
-            <option>Less (-)</option>
-            <option>More (+)</option>
+            <option value="less">Less (-)</option>
+            <option value="more">More (+)</option>
           </select>
         </div>
       </div>

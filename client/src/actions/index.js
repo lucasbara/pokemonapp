@@ -39,7 +39,7 @@ export function clearState() {
   };
 }
 
-export function getPokemonByName(name) {
+/*export function getPokemonByName(name) {
   return async function (dispatch) {
     try {
       const response = await axios.get(
@@ -50,6 +50,14 @@ export function getPokemonByName(name) {
       console.log(error);
       dispatch({ type: "GET_POKEMON_BY_NAME", payload: null });
     }
+  };
+} */
+
+export function getPokemonByName(payload) {
+  console.log("Action", payload);
+  return {
+    type: "GET_POKEMON_BY_NAME",
+    payload: payload,
   };
 }
 
@@ -95,4 +103,44 @@ export function addPokemon(pokemon) {
       dispatch({ type: "ADD_POKEMON", payload: "error" });
     }
   };
+}
+
+/* FilterBar */
+
+export function filterByType(type) {
+  return {
+    type: "FILTER_BY_TYPE",
+    payload: type,
+  };
+}
+
+export function filterByCreator(payload) {
+  return {
+    type: "FILTER_BY_CREATOR",
+    payload: payload,
+  };
+}
+
+export function orderPokemon(type) {
+  console.log(type);
+  if (type === "asc") {
+    return {
+      type: "ORDER_ASCENDING",
+    };
+  }
+  if (type === "desc") {
+    return {
+      type: "ORDER_DESCENDING",
+    };
+  }
+  if (type === "less") {
+    return {
+      type: "ORDER_ATTACK_DESCENDING",
+    };
+  }
+  if (type === "more") {
+    return {
+      type: "ORDER_ATTACK_ASCENDING",
+    };
+  }
 }

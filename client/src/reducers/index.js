@@ -4,11 +4,11 @@ const initialState = {
   allPokemons: [],
   filteredPokemons: [],
   addedPokemon: undefined,
-  pokemonByName: [],
   pokemonById: [],
   pokemonTypes: [],
   currentPage: 0,
   amountOfPokemons: 9,
+  type: undefined,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -73,7 +73,7 @@ const rootReducer = (state = initialState, action) => {
           ),
         };
       }
-    case "GET_POKEMON_BY_NAME":
+    /*case "GET_POKEMON_BY_NAME":
       if (action.payload.name) {
         return {
           ...state,
@@ -84,7 +84,14 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           filteredPokemons: null,
         };
-      }
+      }*/
+    case "GET_POKEMON_BY_NAME":
+      return {
+        ...state,
+        filteredPokemons: state.allPokemons.filter((p) => {
+          return p.name == action.payload.toLowerCase();
+        }),
+      };
     case "GET_POKEMON_BY_ID":
       return {
         ...state,
@@ -99,6 +106,50 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonTypes: [...action.payload],
+      };
+    case "FILTER_BY_TYPE":
+      return {
+        ...state,
+        filteredPokemons: state.filteredPokemons.filter((p) => {
+          return p.types.includes(action.payload);
+        }),
+      };
+    case "FILTER_BY_CREATOR":
+      return {
+        ...state,
+        filteredPokemons: state.filteredPokemons.filter((p) => {
+          return p.created.toString() == action.payload;
+        }),
+      };
+    case "ORDER_ASCENDING":
+      return {
+        ...state,
+        filteredPokemons: [{ name: "tuvieja2" }],
+      };
+    case "ORDER_DESCENDING":
+      return {
+        ...state,
+        filteredPokemons: state.filteredPokemons.sort((a, b) =>
+          b.name.localeCompare(a.name)
+        ),
+      };
+    case "ORDER_ATTACK_ASCENDING":
+      return {
+        ...state,
+        filteredPokemons: state.filteredPokemons.sort((a, b) => {
+          if (a.attack < b.attack) return -1;
+          if (a.attack > b.attack) return 1;
+          return 0;
+        }),
+      };
+    case "ORDER_ATTACK_DESCENDING":
+      return {
+        ...state,
+        filteredPokemons: state.filteredPokemons.sort((a, b) => {
+          if (a.attack > b.attack) return -1;
+          if (a.attack < b.attack) return 1;
+          return 0;
+        }),
       };
     case "ADD_POKEMON":
       return {
