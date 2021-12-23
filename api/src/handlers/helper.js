@@ -24,7 +24,7 @@ async function getPokemonsAPI() {
           weight: subRequest.data.weight,
           image: subRequest.data.sprites.other.dream_world.front_default,
           types: subRequest.data.types.map((type) => type.type.name),
-          created: false,
+          created: "false",
         };
         return pokemonResult;
       })
