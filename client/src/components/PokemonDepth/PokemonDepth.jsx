@@ -19,7 +19,6 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
   useEffect(() => {
     dispatch(getPokemonById(id));
     dispatch(clearPokemonById());
-    console.log(pokemonByID);
   }, []);
   if (pokemonByID.length === 0) {
     return (

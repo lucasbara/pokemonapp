@@ -6,6 +6,7 @@ import {
   orderPokemon,
   filterByType,
   filterByCreator,
+  clearState,
 } from "../../actions/index.js";
 
 function FilterBar() {
@@ -32,6 +33,10 @@ function FilterBar() {
   function filterCreator(e) {
     if (e.target.value === "all") return;
     dispatch(filterByCreator(e.target.value));
+  }
+
+  function clearAllFilters() {
+    dispatch(clearState());
   }
 
   return (
@@ -70,6 +75,9 @@ function FilterBar() {
             <option value="more">More (+)</option>
           </select>
         </div>
+        <p className={style.clearFilters} onClick={clearAllFilters}>
+          Clear filters
+        </p>
       </div>
     </div>
   );

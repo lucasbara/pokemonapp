@@ -75,6 +75,7 @@
 
 .card img {
   width: 150px;
+  max-height: 170px;
   margin-top: 40px;
 }
 

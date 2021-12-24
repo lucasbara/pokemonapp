@@ -19,8 +19,9 @@ function Pokemons() {
   const filteredPokemons1 = useSelector((state) => state.filteredPokemons);
   const currentPage = useSelector((state) => state.currentPage);
   const searchedPokemon = useSelector((state) => state.filteredPokemons);
+  const filters = useSelector((state) => state.filter);
   useEffect(() => {
-    console.log(filteredPokemons1);
+    if (filters) return;
     dispatch(getAllPokemons());
     dispatch(getPokemonTypes());
   }, []);
