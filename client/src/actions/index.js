@@ -5,29 +5,9 @@ export function getAllPokemons() {
     try {
       const response = await axios.get(`http://localhost:3001/pokemons`);
       dispatch({ type: "GET_ALL_POKEMONS", payload: response.data });
-      dispatch(receivePokemons(9));
     } catch (error) {
       console.log(error);
     }
-  };
-}
-
-export function receivePokemons(amount = 12) {
-  return {
-    type: "RECEIVE_POKEMONS",
-    payload: amount,
-  };
-}
-
-export function nextPage() {
-  return {
-    type: "NEXT_PAGE",
-  };
-}
-
-export function previousPage() {
-  return {
-    type: "PREVIOUS_PAGE",
   };
 }
 
@@ -92,6 +72,7 @@ export function addPokemon(pokemon) {
 /* FilterBar */
 
 export function filterByType(type) {
+  console.log(type);
   return {
     type: "FILTER_BY_TYPE",
     payload: type,

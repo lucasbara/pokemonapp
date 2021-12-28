@@ -13,58 +13,58 @@ import {
   receivePokemons,
 } from "../../actions/index.js";
 import FilterBar from "../FilterBar/FilterBar.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
 
 function Pokemons() {
   const dispatch = useDispatch();
-  const filteredPokemons1 = useSelector((state) => state.filteredPokemons);
-  const currentPage = useSelector((state) => state.currentPage);
-  const searchedPokemon = useSelector((state) => state.filteredPokemons);
-  const filters = useSelector((state) => state.filter);
-  const orders = useSelector((state) => state.order);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pokemonsPerPage, setPokemonsPerPage] = useState(9);
+  const indexOfLastPost = currentPage * pokemonsPerPage;
+  const indexOfFirstPost = indexOfLastPost - pokemonsPerPage;
+  const totalPokemons = useSelector((state) => state.filteredPokemons);
+  const showPokemons = useSelector((state) =>
+    state.filteredPokemons
+      ? state.filteredPokemons.slice(indexOfFirstPost, indexOfLastPost)
+      : false
+  );
+
   useEffect(() => {
-    if (filters) return;
-    if (orders) return;
     dispatch(getAllPokemons());
     dispatch(getPokemonTypes());
   }, []);
   useEffect(() => {
-    if (filters) return;
-    if (orders) return;
-    dispatch(getAllPokemons());
-  }, [filters]);
-  useEffect(() => {
-    dispatch(receivePokemons());
+    if (currentPage === 1) {
+      setPokemonsPerPage(9);
+    } else {
+      setPokemonsPerPage(12);
+    }
   }, [currentPage]);
-  const nextPageBtn = (e) => {
-    e.preventDefault();
-    if (searchedPokemon.length === 1) return;
-    dispatch(nextPage());
-    if (currentPage < 36) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+
+  const previousPage = () => {
+    if (currentPage === 1) return;
+    setCurrentPage(currentPage - 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  const previousPageBtn = (e) => {
-    e.preventDefault();
-    if (searchedPokemon.length === 1) return;
-    dispatch(previousPage());
-    if (currentPage !== 0) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+  const nextPage = () => {
+    if (showPokemons > 12) return;
+    setCurrentPage(currentPage + 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  if (!filteredPokemons1) {
+
+  if (!showPokemons) {
     return (
       <div className={style.notFoundContainer}>
         <img src={PikachuNotFound} alt="Not Found Pikachu" />
         <h1>Nothing was found...</h1>
       </div>
     );
-  } else if (filteredPokemons1.length) {
+  } else if (showPokemons.length) {
     return (
       <div>
         <FilterBar />
         <div className={style.pokemons}>
-          {filteredPokemons1 &&
-            filteredPokemons1.map((p) => (
+          {showPokemons &&
+            showPokemons.map((p) => (
               <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
                 <Pokemon
                   name={p.name}
@@ -79,8 +79,8 @@ function Pokemons() {
             ))}
         </div>
         <div className={style.buttons}>
-          <button onClick={previousPageBtn}> Previous page </button>
-          <button onClick={nextPageBtn}>Next page </button>
+          <button onClick={previousPage}> Previous page </button>
+          <button onClick={nextPage}>Next page </button>
         </div>
       </div>
     );
@@ -95,17 +95,3 @@ function Pokemons() {
 }
 
 export default Pokemons;
-
-/*       {allPokemons.map((p) => (
-        <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
-          <Pokemon
-            name={p.name}
-            type={p.type}
-            image={p.image}
-            hp={p.hp}
-            attack={p.attack}
-            defense={p.defense}
-            speed={p.speed}
-          />
-        </Link>
-      ))} */
