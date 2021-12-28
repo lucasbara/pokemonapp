@@ -9,7 +9,7 @@
   font-family: "Roboto", sans-serif;
   padding: 10px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .main {
@@ -22,7 +22,7 @@
 
 .formContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
   align-items: center;
   background: rgba(255, 255, 255, 0.4);
@@ -31,7 +31,8 @@
 }
 
 .form {
-  width: 50vw;
+  width: 60vw;
+  max-width: 40vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,8 +40,7 @@
 }
 
 .formColumn img {
-  width: 120px;
-  margin-left: 100px;
+  width: 150px;
 }
 
 /*.form div {
@@ -94,11 +94,10 @@
   display: block;
   color: red;
   font-size: 0.9rem;
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
+  width: 50%;
   font-weight: 700;
 }
 

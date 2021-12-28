@@ -61,8 +61,8 @@ function AddPokemon() {
   }
 
   useEffect(() => {
-    console.log(errors);
-  }, [errors]);
+    console.log(input);
+  }, [input]);
 
   return (
     <div className={style.container}>
@@ -103,7 +103,11 @@ function AddPokemon() {
                 <option value="Type 1">Type 1</option>
                 {types &&
                   types.map((type) => {
-                    return <option>{type.name}</option>;
+                    return (
+                      <option value={type.id} key={type.id}>
+                        {type.name}
+                      </option>
+                    );
                   })}
                 {errors.type1 && <p className={style.errors}>{errors.type1}</p>}
               </select>
@@ -116,7 +120,7 @@ function AddPokemon() {
                 {types &&
                   types.map((type) => {
                     return (
-                      <option value={type.name} key={type.id}>
+                      <option value={type.id} key={type.id}>
                         {type.name}
                       </option>
                     );
@@ -131,7 +135,7 @@ function AddPokemon() {
                 onChange={handleInputChange}
                 value={input.height}
               ></input>
-              {errors.height && <p className={style.errors}>{errors.weight}</p>}
+              {errors.height && <p className={style.errors}>{errors.height}</p>}
             </div>
             <div>
               <input
@@ -141,11 +145,12 @@ function AddPokemon() {
                 onChange={handleInputChange}
                 value={input.weight}
               ></input>
+              {errors.weight && <p className={style.errors}>{errors.weight}</p>}
             </div>
             <div>
               <input
                 type="text"
-                placeholder="Hp"
+                placeholder="Health"
                 name="hp"
                 onChange={handleInputChange}
                 value={input.hp}
@@ -207,19 +212,20 @@ export function validateForm(input) {
   ) {
     errors.image = "An URL of an image is required";
   }
-  if (!input.type1 || input.type1 === "Type 1") {
+  if (!input.type1 || input.type1 == "type1") {
     errors.type1 = "Type can not be empty";
   }
   if (!input.height) {
-    errors.height = "Heigth is required";
-  } else if (!/^0*(?:[1-9][0-9]?|100)$/.test(input.height)) {
-    errors.height = "Heigth must be between 1 and 1000";
+    errors.height = "Height is required";
+  } else if (/[1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1000/g.test(input.height)) {
+    errors.height = "Height must be between 1 and 1000";
   }
   if (!input.weight) {
-    errors.height = "Weight is required";
-  } else if (!/^0*(?:[1-9][0-9]?|100)$/.test(input.weight)) {
-    errors.height = "Heigth must be between 1 and 1000";
+    errors.weight = "Weight is required";
+  } else if (/[1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1000/g.test(input.weight)) {
+    errors.weight = "Weight must be between 1 and 1000";
   }
+
   if (!input.hp) {
     errors.hp = "Hp is required";
   } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.hp)) {

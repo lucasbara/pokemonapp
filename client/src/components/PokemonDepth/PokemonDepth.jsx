@@ -87,7 +87,7 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
               <p className={style.pokemonName}>{pokemonByID.name}</p>
               <div className={style.types}>
                 {pokemonByID.types &&
-                  pokemonByID.types.map((type) => <p>{type}</p>)}
+                  pokemonByID.types.map((type) => <p>{type.name}</p>)}
               </div>
             </div>
           </div>

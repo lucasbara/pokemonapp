@@ -20,11 +20,18 @@ function Pokemons() {
   const currentPage = useSelector((state) => state.currentPage);
   const searchedPokemon = useSelector((state) => state.filteredPokemons);
   const filters = useSelector((state) => state.filter);
+  const orders = useSelector((state) => state.order);
   useEffect(() => {
     if (filters) return;
+    if (orders) return;
     dispatch(getAllPokemons());
     dispatch(getPokemonTypes());
   }, []);
+  useEffect(() => {
+    if (filters) return;
+    if (orders) return;
+    dispatch(getAllPokemons());
+  }, [filters]);
   useEffect(() => {
     dispatch(receivePokemons());
   }, [currentPage]);
@@ -48,7 +55,7 @@ function Pokemons() {
     return (
       <div className={style.notFoundContainer}>
         <img src={PikachuNotFound} alt="Not Found Pikachu" />
-        <h1>Pokemon not found...</h1>
+        <h1>Nothing was found...</h1>
       </div>
     );
   } else if (filteredPokemons1.length) {
@@ -56,19 +63,20 @@ function Pokemons() {
       <div>
         <FilterBar />
         <div className={style.pokemons}>
-          {filteredPokemons1.map((p) => (
-            <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
-              <Pokemon
-                name={p.name}
-                types={p.types}
-                image={p.image}
-                hp={p.hp}
-                attack={p.attack}
-                defense={p.defense}
-                speed={p.speed}
-              />
-            </Link>
-          ))}
+          {filteredPokemons1 &&
+            filteredPokemons1.map((p) => (
+              <Link to={`pokemon/${p.id}`} style={{ textDecoration: "none" }}>
+                <Pokemon
+                  name={p.name}
+                  types={p.types}
+                  image={p.image}
+                  hp={p.hp}
+                  attack={p.attack}
+                  defense={p.defense}
+                  speed={p.speed}
+                />
+              </Link>
+            ))}
         </div>
         <div className={style.buttons}>
           <button onClick={previousPageBtn}> Previous page </button>

@@ -6,6 +6,8 @@ import {
   orderPokemon,
   filterByType,
   filterByCreator,
+  receivePokemons,
+  getAllPokemons,
   clearState,
 } from "../../actions/index.js";
 

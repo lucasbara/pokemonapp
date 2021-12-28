@@ -21,6 +21,10 @@
   font-weight: 500;
 }
 
+.header a:hover {
+  color: #8aadeb;
+}
+
 /*.line {
   padding-top: 3px;
   width: 100%;
