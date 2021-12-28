@@ -23,7 +23,9 @@ async function getPokemonsAPI() {
           height: subRequest.data.height,
           weight: subRequest.data.weight,
           image: subRequest.data.sprites.other.dream_world.front_default,
-          types: subRequest.data.types.map((type) => type.type.name),
+          types: subRequest.data.types.map((type) => {
+            return { name: type.type.name };
+          }),
           created: "false",
         };
         return pokemonResult;
@@ -37,7 +39,15 @@ async function getPokemonsAPI() {
 
 // Get all pokemons included DB and API
 async function getAllPokemons() {
-  const dbPokemons = await Pokemon.findAll();
+  const dbPokemons = await Pokemon.findAll({
+    include: {
+      model: Type,
+      through: {
+        attributes: [],
+      },
+      attributes: ["name"],
+    },
+  });
   const ApiPokemons = await getPokemonsAPI();
 
   return [...dbPokemons, ...ApiPokemons];
@@ -45,7 +55,8 @@ async function getAllPokemons() {
 
 // Add pokemon to DB
 async function addPokemon(req, res) {
-  const { hp, attack, defense, speed, height, weight, image } = req.body;
+  const { hp, attack, defense, speed, height, weight, image, type1, type2 } =
+    req.body;
   let name = req.body.name ? req.body.name.toLowerCase() : req.body;
   let pokemon = {
     id: ++dbId,
@@ -59,8 +70,14 @@ async function addPokemon(req, res) {
     image,
   };
   try {
-    const createdPokemon = await Pokemon.create(pokemon);
-    return res.status(200).send(createdPokemon);
+    let createdPokemon = await Pokemon.create(pokemon);
+    const addType1 = await createdPokemon.addType(type1, {
+      through: "pokemon_type",
+    });
+    const addType2 = await createdPokemon.addType(type2, {
+      through: "pokemon_type",
+    });
+    return res.status(200).send("El pokemon ha sido creado correctamente");
   } catch (error) {
     return error;
   }
