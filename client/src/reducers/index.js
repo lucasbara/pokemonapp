@@ -1,5 +1,3 @@
-import { filterByCreator } from "../actions";
-
 const initialState = {
   allPokemons: [],
   filteredPokemons: [],
@@ -23,7 +21,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case "GET_POKEMON_BY_NAME":
       const searchedPokemon = state.allPokemons.filter((p) => {
-        return p.name == action.payload.toLowerCase();
+        return p.name === action.payload.toLowerCase();
       });
       if (searchedPokemon.length) {
         return {
@@ -52,7 +50,6 @@ const rootReducer = (state = initialState, action) => {
         pokemonTypes: [...action.payload],
       };
     case "FILTER_BY_TYPE":
-      console.log(action.payload);
       const typeFiltered = state.allPokemons.filter((p) => {
         return p.types.some((type) => type.name === action.payload);
       });
@@ -62,38 +59,32 @@ const rootReducer = (state = initialState, action) => {
           filter: true,
           filteredPokemons: typeFiltered,
         };
-      }
-      return {
-        ...state,
-        filteredPokemons: false,
-      };
-
-    case "FILTER_BY_CREATOR":
-      const filteredCreator = state.allPokemons.filter((p) => {
-        return p.created.toString() === action.payload;
-      });
-      if (filteredCreator.length) {
-        if (action.payload) {
-          return {
-            ...state,
-            filteredPokemons: filteredCreator,
-          };
-        } else
-          return {
-            ...state,
-            filteredPokemons: filteredCreator,
-          };
       } else {
         return {
           ...state,
           filteredPokemons: false,
         };
       }
+
+    case "FILTER_BY_CREATOR":
+      const filteredCreator = state.allPokemons.filter((p) => {
+        return p.created.toString() === action.payload;
+      });
+      if (filteredCreator.length) {
+        return {
+          ...state,
+          filteredPokemons: filteredCreator,
+        };
+      } else {
+        return {
+          ...state,
+          filteredPokemons: false,
+        };
+      }
+
     case "ORDER_ASCENDING":
       return {
         ...state,
-        currentPage: 0,
-        order: true,
         filteredPokemons: state.filteredPokemons.sort((a, b) => {
           if (a.name < b.name) return -1;
           if (a.name > b.name) return 1;
@@ -112,8 +103,6 @@ const rootReducer = (state = initialState, action) => {
     case "ORDER_ATTACK_ASCENDING":
       return {
         ...state,
-        currentPage: 0,
-        order: true,
         filteredPokemons: state.filteredPokemons.sort((a, b) => {
           if (a.attack > b.attack) return -1;
           if (a.attack < b.attack) return 1;
@@ -134,7 +123,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         addedPokemon: action.payload,
       };
-
     default:
       return state;
   }

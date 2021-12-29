@@ -3,12 +3,8 @@ import style from "./Header.module.css";
 import Logo from "../../img/logo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar.jsx";
-import {
-  getAllPokemons,
-  nextPage,
-  receivePokemons,
-} from "../../actions/index.js";
-import { useDispatch, useSelector } from "react-redux";
+import { getAllPokemons } from "../../actions/index.js";
+import { useDispatch } from "react-redux";
 
 function Header() {
   const dispatch = useDispatch();

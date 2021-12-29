@@ -32,6 +32,7 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
       </div>
     );
   } else {
+    console.log(pokemonByID);
     return (
       <div className={style.bigContainer}>
         <Header />

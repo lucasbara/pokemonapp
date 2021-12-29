@@ -5,15 +5,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../img/loading.gif";
 import PikachuNotFound from "../../img/pikachusearch.png";
-import {
-  getAllPokemons,
-  getPokemonTypes,
-  nextPage,
-  previousPage,
-  receivePokemons,
-} from "../../actions/index.js";
+import { getAllPokemons, getPokemonTypes } from "../../actions/index.js";
 import FilterBar from "../FilterBar/FilterBar.jsx";
-import Pagination from "../Pagination/Pagination.jsx";
 
 function Pokemons() {
   const dispatch = useDispatch();
@@ -74,6 +67,7 @@ function Pokemons() {
                   attack={p.attack}
                   defense={p.defense}
                   speed={p.speed}
+                  key={p.id}
                 />
               </Link>
             ))}

@@ -70,7 +70,7 @@ function AddPokemon() {
       <div className={style.main}>
         <div className={style.formContainer}>
           <div className={style.formColumn}>
-            <img src={img}></img>
+            <img src={img} alt="New Pokemon"></img>
           </div>
           <form className={style.form} onSubmit={handleSubmit}>
             <h1>Create a new pokemon</h1>
@@ -212,7 +212,7 @@ export function validateForm(input) {
   ) {
     errors.image = "An URL of an image is required";
   }
-  if (!input.type1 || input.type1 == "type1") {
+  if (!input.type1 || input.type1 === "type1") {
     errors.type1 = "Type can not be empty";
   }
   if (!input.height) {

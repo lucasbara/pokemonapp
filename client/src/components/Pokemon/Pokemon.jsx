@@ -9,7 +9,7 @@ function Pokemon({ name, id, types, image }) {
         <div className={style.cardGradient}>
           <p className={style.pokemonName}>{name}</p>
           <div className={style.types}>
-            {types && types.map((type) => <p>{type.name}</p>)}
+            {types && types.map((type) => <p key={type.id}>{type.name}</p>)}
           </div>
         </div>
       </div>
