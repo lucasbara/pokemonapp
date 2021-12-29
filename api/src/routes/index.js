@@ -50,7 +50,18 @@ router.get("/pokemons", async (req, res) => {
 router.get("/pokemons/:idPokemon", async (req, res) => {
   const id = Number(req.params.idPokemon);
   if (typeof id === "number") {
-    const pokemonDb = await Pokemon.findByPk(id);
+    const pokemonDb = await Pokemon.findOne({
+      where: {
+        id: id,
+      },
+      include: {
+        model: Type,
+        through: {
+          attributes: [],
+        },
+        attributes: ["name"],
+      },
+    });
     if (pokemonDb) {
       return res.json(pokemonDb);
     } else {
