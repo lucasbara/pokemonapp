@@ -81,6 +81,7 @@ function AddPokemon() {
                 name="name"
                 onChange={handleInputChange}
                 value={input.name}
+                className={errors.name && style.danger}
               ></input>
               {errors.name && <p className={style.errors}>{errors.name}</p>}
             </div>
@@ -109,7 +110,6 @@ function AddPokemon() {
                       </option>
                     );
                   })}
-                {errors.type1 && <p className={style.errors}>{errors.type1}</p>}
               </select>
               <select
                 name="type2"
@@ -126,66 +126,73 @@ function AddPokemon() {
                     );
                   })}
               </select>
+              {errors.type1 && <p className={style.errors}>{errors.type1}</p>}
             </div>
-            <div>
+            <div className={style.input}>
               <input
                 type="text"
                 placeholder="Height"
                 name="height"
                 onChange={handleInputChange}
                 value={input.height}
+                className={errors.height && style.danger}
               ></input>
               {errors.height && <p className={style.errors}>{errors.height}</p>}
             </div>
-            <div>
+            <div className={style.input}>
               <input
                 type="text"
                 placeholder="Weight"
                 name="weight"
                 onChange={handleInputChange}
                 value={input.weight}
+                className={errors.weight && style.danger}
               ></input>
               {errors.weight && <p className={style.errors}>{errors.weight}</p>}
             </div>
-            <div>
+            <div className={style.input}>
               <input
                 type="text"
                 placeholder="Health"
                 name="hp"
                 onChange={handleInputChange}
                 value={input.hp}
+                className={errors.hp && style.danger}
               ></input>
               {errors.hp && <p className={style.errors}>{errors.hp}</p>}
             </div>
-            <div>
+            <div className={style.input}>
               <input
                 type="text"
                 placeholder="Attack"
                 name="attack"
                 onChange={handleInputChange}
                 value={input.attack}
+                className={errors.attack && style.danger}
               ></input>
               {errors.attack && <p className={style.errors}>{errors.attack}</p>}
             </div>
-            <div>
+            <div className={style.input}>
               <input
                 type="text"
                 placeholder="Defense"
                 name="defense"
                 onChange={handleInputChange}
                 value={input.defense}
+                className={errors.defense && style.danger}
               ></input>
               {errors.defense && (
                 <p className={style.errors}>{errors.defense}</p>
               )}
             </div>
-            <div>
+            <div className={style.input}>
               <input
                 type="text"
                 placeholder="Speed"
                 name="speed"
                 onChange={handleInputChange}
                 value={input.speed}
+                className={errors.speed && style.danger}
               ></input>
               {errors.speed && <p className={style.errors}>{errors.speed}</p>}
             </div>

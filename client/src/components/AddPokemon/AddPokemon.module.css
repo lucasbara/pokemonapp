@@ -85,13 +85,16 @@
   margin: 10px 4px;
 }
 
-.input input:focus {
-  border: 1px solid green;
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
 }
 
-.form input:focus {
-  border: 1px solid green;
-}
+/*.input input:focus {
+  outline-color: #4585c1;
+}*/
 
 .form option {
   text-transform: capitalize;
@@ -99,6 +102,7 @@
 
 .form select {
   text-transform: capitalize;
+  margin: 10px 4px;
 }
 
 .form div {
@@ -114,8 +118,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  font-weight: 700;
+  width: 100%;
+  font-weight: 500;
+}
+
+.danger {
+  outline-color: red !important;
+  outline-width: 5px;
 }
 
 .btn {
