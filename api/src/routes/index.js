@@ -78,7 +78,6 @@ router.get("/pokemons/:idPokemon", async (req, res) => {
 });
 
 router.post("/pokemons", async (req, res) => {
-  console.log(req.body);
   await addPokemon(req, res);
 });
 
