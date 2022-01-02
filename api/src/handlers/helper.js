@@ -8,7 +8,7 @@ let dbId = 40;
 async function getPokemonsAPI() {
   try {
     const response = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=40"
+      "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=50"
     );
     const data = Promise.all(
       response.data.results.map(async (pokemon) => {
