@@ -57,14 +57,14 @@ export function clearState() {
 export function addPokemon(pokemon) {
   return async function (dispatch) {
     try {
+      dispatch({ type: "ADD_POKEMON", payload: true });
       const response = await axios.post(
         "http://localhost:3001/pokemons",
         pokemon
       );
-      dispatch({ type: "ADD_POKEMON", payload: "sucess" });
     } catch (error) {
       console.log(error);
-      dispatch({ type: "ADD_POKEMON", payload: "error" });
+      dispatch({ type: "ADD_POKEMON", payload: false });
     }
   };
 }

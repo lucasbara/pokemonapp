@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../img/loading.gif";
 import PikachuNotFound from "../../img/pikachusearch.png";
-import { getAllPokemons, getPokemonTypes } from "../../actions/index.js";
+import {
+  getAllPokemons,
+  getPokemonTypes,
+  clearState,
+} from "../../actions/index.js";
 import FilterBar from "../FilterBar/FilterBar.jsx";
 
 function Pokemons() {
@@ -15,22 +19,31 @@ function Pokemons() {
   const indexOfLastPost = currentPage * pokemonsPerPage;
   const indexOfFirstPost = indexOfLastPost - pokemonsPerPage;
   const totalPokemons = useSelector((state) => state.filteredPokemons);
+  const totalPages = Math.ceil(totalPokemons.length / pokemonsPerPage);
   const showPokemons = useSelector((state) =>
     state.filteredPokemons
       ? state.filteredPokemons.slice(indexOfFirstPost, indexOfLastPost)
       : false
   );
 
+  // Bring pokemons from API
+
   useEffect(() => {
     dispatch(getAllPokemons());
     dispatch(getPokemonTypes());
   }, []);
+
+  // Pagination
+
   useEffect(() => {
     if (currentPage === 1) {
       setPokemonsPerPage(9);
     } else {
       setPokemonsPerPage(12);
     }
+
+    console.log("Current", currentPage);
+    console.log("Total", totalPages);
   }, [currentPage]);
 
   const previousPage = () => {
@@ -39,9 +52,16 @@ function Pokemons() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const nextPage = () => {
-    if (showPokemons > 12) return;
+    if (currentPage === totalPages) return;
     setCurrentPage(currentPage + 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  if (currentPage > totalPages) previousPage();
+
+  // Clear State for Go Back button
+
+  const clearHome = () => {
+    dispatch(clearState());
   };
 
   if (!showPokemons) {
@@ -49,6 +69,11 @@ function Pokemons() {
       <div className={style.notFoundContainer}>
         <img src={PikachuNotFound} alt="Not Found Pikachu" />
         <h1>Nothing was found...</h1>
+        <div className={style.goBack}>
+          <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
+            <a onClick={clearHome}>Go Back</a>
+          </Link>
+        </div>
       </div>
     );
   } else if (showPokemons.length) {
@@ -82,7 +107,7 @@ function Pokemons() {
     return (
       <div className={style.loadingContainer}>
         <img src={Loading} alt="Loading" />
-        <h1 className={style.loadingText}>Loading... please wait</h1>
+        <h1>Loading... please wait</h1>
       </div>
     );
   }

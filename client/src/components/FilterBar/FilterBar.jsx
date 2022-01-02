@@ -19,10 +19,12 @@ function FilterBar() {
   }, []);
 
   function order(e) {
+    if (e.target.value === "alph" || e.target.value === "attack") return;
     dispatch(orderPokemon(e.target.value));
   }
 
   function filterType(e) {
+    if (e.target.value === "type") return;
     dispatch(filterByType(e.target.value));
   }
 
@@ -48,7 +50,7 @@ function FilterBar() {
           <div className={style.filters}>
             <p>Filter by</p>
             <select onChange={filterType}>
-              <option>Type</option>
+              <option value="type">Type</option>
               {types &&
                 types.map((type) => {
                   return (
@@ -68,12 +70,12 @@ function FilterBar() {
           <div className={style.filters}>
             <p>Order by</p>
             <select onChange={order}>
-              <option>Alphabetical</option>
+              <option value="alph">Alphabetical</option>
               <option value="asc">Ascending (A-Z)</option>
               <option value="desc">Descending (Z-A)</option>
             </select>
             <select onChange={order}>
-              <option>Attack</option>
+              <option value="attack">Attack</option>
               <option value="less">Less (-)</option>
               <option value="more">More (+)</option>
             </select>

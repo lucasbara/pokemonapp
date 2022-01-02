@@ -2,18 +2,25 @@ import React, { useEffect, useState } from "react";
 import style from "./AddPokemon.module.css";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
+import Modal from "../Modal/Modal.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemonTypes, addPokemon } from "../../actions/index.js";
+import {
+  getPokemonTypes,
+  addPokemon,
+  clearState,
+} from "../../actions/index.js";
 import img from "../../img/addpokemon.png";
 
 function AddPokemon() {
-  const types = useSelector((state) => state.pokemonTypes);
   const dispatch = useDispatch();
+  const isCreated = useSelector((state) => state.addedPokemon);
+  const types = useSelector((state) => state.pokemonTypes);
 
   useEffect(() => {
     dispatch(getPokemonTypes());
   }, []);
 
+  // Controlled form
   const [input, setInput] = useState({
     name: "",
     image: "",
@@ -60,9 +67,14 @@ function AddPokemon() {
     });
   }
 
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
+  // Modal on Submit button
+
+  function finishedForm() {
+    console.log(errors);
+    setTimeout(() => dispatch(clearState()), 2000);
+  }
+
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className={style.container}>
@@ -73,7 +85,8 @@ function AddPokemon() {
             <img src={img} alt="New Pokemon"></img>
           </div>
           <form className={style.form} onSubmit={handleSubmit}>
-            <h1>Create a new pokemon</h1>
+            <h1 className={style.formTitle}>Create a new pokemon</h1>
+            <div className={style.bar}></div>
             <div className={style.input}>
               <input
                 type="text"
@@ -196,7 +209,10 @@ function AddPokemon() {
               ></input>
               {errors.speed && <p className={style.errors}>{errors.speed}</p>}
             </div>
-            <button className={style.btn}>Create</button>
+            <button className={style.btn} onClick={finishedForm}>
+              Create
+            </button>
+            {isCreated && <Modal />}
           </form>
         </div>
       </div>
@@ -215,7 +231,9 @@ export function validateForm(input) {
   if (!input.image) {
     errors.image = "Image is required";
   } else if (
-    /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g.test(input.image)
+    !/(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg)(\?[^\s[",><]*)?/.test(
+      input.image
+    )
   ) {
     errors.image = "An URL of an image is required";
   }
@@ -224,12 +242,12 @@ export function validateForm(input) {
   }
   if (!input.height) {
     errors.height = "Height is required";
-  } else if (/[1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1000/g.test(input.height)) {
+  } else if (!/^([1-9]\d{0,2}|1000)$/.test(input.height)) {
     errors.height = "Height must be between 1 and 1000";
   }
   if (!input.weight) {
     errors.weight = "Weight is required";
-  } else if (/[1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1000/g.test(input.weight)) {
+  } else if (!/^([1-9]\d{0,2}|1000)$/.test(input.weight)) {
     errors.weight = "Weight must be between 1 and 1000";
   }
 

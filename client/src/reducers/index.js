@@ -1,7 +1,7 @@
 const initialState = {
   allPokemons: [],
   filteredPokemons: [],
-  addedPokemon: undefined,
+  addedPokemon: false,
   pokemonById: [],
   pokemonTypes: [],
 };
@@ -18,6 +18,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredPokemons: state.allPokemons,
+        addedPokemon: false,
+      };
+    case "ADD_POKEMON":
+      console.log(action.payload);
+      return {
+        ...state,
+        addedPokemon: action.payload,
       };
     case "GET_POKEMON_BY_NAME":
       const searchedPokemon = state.allPokemons.filter((p) => {
@@ -118,11 +125,7 @@ const rootReducer = (state = initialState, action) => {
           return 0;
         }),
       };
-    case "ADD_POKEMON":
-      return {
-        ...state,
-        addedPokemon: action.payload,
-      };
+
     default:
       return state;
   }
