@@ -36,7 +36,7 @@ function AddPokemon() {
 
   const [errors, setErrors] = useState({});
 
-  function handleInputChange(e) {
+  const handleInputChange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -48,9 +48,9 @@ function AddPokemon() {
         [e.target.name]: e.target.value,
       })
     );
-  }
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addPokemon(input));
     setInput({
@@ -65,16 +65,13 @@ function AddPokemon() {
       defense: "",
       speed: "",
     });
-  }
+  };
 
   // Modal on Submit button
 
-  function finishedForm() {
-    console.log(errors);
+  const finishedForm = () => {
     setTimeout(() => dispatch(clearState()), 2000);
-  }
-
-  const [openModal, setOpenModal] = useState(false);
+  };
 
   return (
     <div className={style.container}>

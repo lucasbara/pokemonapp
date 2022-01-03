@@ -3,13 +3,13 @@ import style from "./Header.module.css";
 import Logo from "../../img/logo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar.jsx";
-import { getAllPokemons } from "../../actions/index.js";
+import { getAllPokemons, clearState } from "../../actions/index.js";
 import { useDispatch } from "react-redux";
 
 function Header() {
   const dispatch = useDispatch();
-  const goBackHome = function () {
-    dispatch(getAllPokemons());
+  const goBackHome = () => {
+    dispatch(clearState());
   };
   return (
     <div>

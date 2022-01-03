@@ -13,29 +13,38 @@ function FilterBar() {
   const dispatch = useDispatch();
   const types = useSelector((state) => state.pokemonTypes);
   const [showFilterBar, setShowFilterBar] = useState(false);
+  const [selectType, setSelectType] = useState("");
+  const [selectCreator, setSelectCreator] = useState("");
+  const [selectOrder, setSelectOrder] = useState("");
 
   useEffect(() => {
     dispatch(getPokemonTypes());
   }, []);
 
-  function order(e) {
+  const order = (e) => {
+    setSelectOrder(e.target.value);
     if (e.target.value === "alph" || e.target.value === "attack") return;
     dispatch(orderPokemon(e.target.value));
-  }
+  };
 
-  function filterType(e) {
-    if (e.target.value === "type") return;
+  const filterType = (e) => {
+    setSelectType(e.target.value);
+    if (e.target.value === "type") return dispatch(clearState());
     dispatch(filterByType(e.target.value));
-  }
+  };
 
-  function filterCreator(e) {
-    if (e.target.value === "all") return;
+  const filterCreator = (e) => {
+    setSelectCreator(e.target.value);
+    if (e.target.value === "all") return dispatch(clearState());
     dispatch(filterByCreator(e.target.value));
-  }
+  };
 
-  function clearAllFilters() {
+  const clearAllFilters = () => {
+    setSelectType("");
+    setSelectCreator("");
+    setSelectOrder("");
     dispatch(clearState());
-  }
+  };
 
   if (!showFilterBar) {
     return (
@@ -49,7 +58,7 @@ function FilterBar() {
         <div className={style.container}>
           <div className={style.filters}>
             <p>Filter by</p>
-            <select onChange={filterType}>
+            <select onChange={filterType} value={selectType}>
               <option value="type">Type</option>
               {types &&
                 types.map((type) => {
@@ -60,7 +69,7 @@ function FilterBar() {
                   );
                 })}
             </select>
-            <select onChange={filterCreator}>
+            <select onChange={filterCreator} value={selectCreator}>
               <option>Source</option>
               <option value="all">All</option>
               <option value="false">Api</option>
@@ -69,12 +78,12 @@ function FilterBar() {
           </div>
           <div className={style.filters}>
             <p>Order by</p>
-            <select onChange={order}>
+            <select onChange={order} value={selectOrder}>
               <option value="alph">Alphabetical</option>
               <option value="asc">Ascending (A-Z)</option>
               <option value="desc">Descending (Z-A)</option>
             </select>
-            <select onChange={order}>
+            <select onChange={order} value={selectOrder}>
               <option value="attack">Attack</option>
               <option value="less">Less (-)</option>
               <option value="more">More (+)</option>
