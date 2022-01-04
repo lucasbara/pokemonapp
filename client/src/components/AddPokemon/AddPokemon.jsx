@@ -10,7 +10,6 @@ import {
   clearState,
 } from "../../actions/index.js";
 import img from "../../img/addpokemon.png";
-import { AiOutlineStop } from "react-icons/ai";
 
 function AddPokemon() {
   const dispatch = useDispatch();
@@ -19,6 +18,7 @@ function AddPokemon() {
 
   useEffect(() => {
     dispatch(getPokemonTypes());
+    console.log("Pre renderizado", errors);
   }, []);
 
   // Controlled form
@@ -35,7 +35,7 @@ function AddPokemon() {
     speed: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({ name: "" });
 
   const handleInputChange = (e) => {
     setInput({
@@ -219,7 +219,6 @@ function AddPokemon() {
                 onClick={finishedForm}
               >
                 <p>Complete the form</p>
-                <AiOutlineStop />
               </button>
             ) : (
               <button className={style.btn} onClick={finishedForm}>

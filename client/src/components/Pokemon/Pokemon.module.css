@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0px 4px 10px -3px rgba(0, 0, 0, 0.25);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .cardGradient {
@@ -39,6 +39,23 @@
   flex-grow: auto;
 }
 
+.card:hover {
+  /*transform: scale(1.1);*/
+  box-shadow: -2px 5px 21px 4px rgba(44, 118, 255, 0.3);
+  cursor: pointer;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.card:hover .cardGradient {
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+}
+
 .types {
   display: flex;
   flex-direction: row;
@@ -59,19 +76,13 @@
   font-weight: 700;
 }
 
-.card:hover {
-  transform: scale(1.1);
-  box-shadow: -2px 5px 21px 4px rgba(44, 118, 255, 0.3);
-  cursor: pointer;
-}
-
-.cardGradient:hover {
+/*.cardGradient:hover {
   background-image: linear-gradient(
     109.6deg,
     rgba(45, 116, 213, 1) 11.2%,
     rgba(121, 137, 212, 1) 91.2%
   );
-}
+} */
 
 .card button {
   border-radius: 12px 12px 0px 0;
@@ -125,4 +136,60 @@
 .icon {
   font-size: 35px;
   color: #34d399;
+}
+
+/* CSS ANIMATIONS */
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Card Gradient */
+
+@-webkit-keyframes slideInLeft {
+  0% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes slideInLeft {
+  0% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
 }

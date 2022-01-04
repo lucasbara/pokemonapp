@@ -37,10 +37,7 @@ function Pokemons() {
 
   useEffect(() => {
     if (currentPage === 1) return setPokemonsPerPage(9);
-    console.log("Current", currentPage);
-    console.log("Total", totalPages);
-    console.log("Total Pokemons", totalPokemons);
-    console.log("Total Pages", totalPages);
+    console.log("Total Pokemons", totalPokemons.length);
     return setPokemonsPerPage(12);
   }, [currentPage]);
 

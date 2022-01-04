@@ -36,11 +36,6 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
     return (
       <div className={style.bigContainer}>
         <Header />
-        <div className={style.goBack}>
-          <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
-            <a>Go Back</a>
-          </Link>
-        </div>
         <div className={style.container}>
           <div className={style.card}>
             <div className={style.upper}>
@@ -92,6 +87,11 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
               </div>
             </div>
           </div>
+        </div>
+        <div className={style.goBack}>
+          <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
+            <a>Go Back</a>
+          </Link>
         </div>
         <div className={style.empty}></div>
         <Footer />

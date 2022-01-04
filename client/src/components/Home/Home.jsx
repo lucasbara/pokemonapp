@@ -6,7 +6,7 @@ import Pokemons from "../Pokemons/Pokemons.jsx";
 
 function Home() {
   return (
-    <div>
+    <div className={style.container}>
       <Header />
       <div className={style.main}>
         <div className={style.min}>

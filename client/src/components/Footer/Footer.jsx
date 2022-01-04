@@ -11,7 +11,11 @@ function Footer() {
         <p>
           <BiCodeAlt />
           &ensp;with&ensp;
-          <AiFillHeart /> by Lucas Barallobre using <DiReact />
+          <AiFillHeart /> by{" "}
+          <a href="https://github.com/lucasbara" target="_blank">
+            Lucas Barallobre
+          </a>{" "}
+          using <DiReact />
         </p>
       </div>
     </div>
