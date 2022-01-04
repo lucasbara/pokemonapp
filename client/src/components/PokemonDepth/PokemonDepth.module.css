@@ -64,10 +64,17 @@
 }
 
 .card img {
+  max-width: 230px;
+  margin-top: 20px;
+  margin-right: 100px;
+}
+
+/* SVG
+.card img {
   width: 170px;
   margin-top: 40px;
   margin-right: 130px;
-}
+} */
 
 .stats {
   display: flex;

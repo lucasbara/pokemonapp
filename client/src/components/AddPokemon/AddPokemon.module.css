@@ -13,7 +13,7 @@
   box-sizing: border-box;
   display: block;
   margin-left: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   margin-top: 5px;
 }
 
@@ -37,10 +37,10 @@
 }
 
 .main {
-  margin-top: 100px;
+  margin-top: 50px;
   width: 100vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -49,32 +49,52 @@
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  margin-right: 210px;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 12px;
-  width: 50vw;
+  width: 70vw;
+  margin-right: 0px;
+  padding-bottom: 10px;
   -webkit-animation-name: slideInLeft;
   animation-name: slideInLeft;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .form {
   width: 60vw;
-  max-width: 30vw;
+  max-width: 45vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 100px;
+}
+
+.formColumn {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.formColumn img {
-  width: 150px;
+.formColumn p {
+  font-weight: 500;
+  font-size: 17px;
+  margin-top: 10px;
 }
 
-.form ::placeholder {
+.inputImage {
+  max-width: 250px;
+}
+
+.defaultImage {
+  max-width: 160px;
+}
+
+.formColumn .form ::placeholder {
   font-size: 14px;
 }
 

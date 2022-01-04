@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
 
-/* Before showing FilterBar */
+/* Before clicking FilterBar */
 
 .bigContainer p {
   cursor: pointer;
@@ -12,7 +12,7 @@
   color: #8aadeb;
 }
 
-/* Showing FilterBar */
+/* After clicking FilterBar */
 
 .bigContainer {
   width: 100vw;
@@ -22,6 +22,23 @@
   flex-direction: row;
   padding-top: 30px;
   font-family: "Roboto", sans-serif;
+}
+
+.showFilter {
+  width: 6vw;
+  height: 4vh;
+  border-radius: 12px;
+  border: none;
+  background-color: #000;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.showFilter:hover {
+  background-color: #f2f2f2;
+  color: #000;
+  border: 2px solid #000;
+  cursor: pointer;
 }
 
 .container {
@@ -44,6 +61,10 @@
   font-weight: 700;
 }
 
+.filters p:hover {
+  color: #000;
+}
+
 .filters select {
   text-align: center;
   margin: 10px 10px 0px;
@@ -52,11 +73,17 @@
   background-color: #f2f2f2;
   border-color: transparent;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  width: 8vw;
+  height: 4vh;
 }
 
 .filters select:hover {
   cursor: pointer;
-  box-shadow: -2px 5px 21px 4px rgba(44, 118, 255, 0.3);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.filters select:active {
+  text-transform: capitalize;
 }
 
 .filters select:focus {
@@ -72,6 +99,53 @@
 
 .filters option {
   text-transform: capitalize;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.buttonClear {
+  margin: 0 20px;
+  width: 8vw;
+  height: 4vh;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  color: #000;
+  border: 2px solid #000;
+  font-size: 15px;
+}
+
+.buttons .buttonClear:hover {
+  background-color: #000;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.buttonHide {
+  margin: 0 20px;
+  width: 8vw;
+  height: 4vh;
+  border-radius: 12px;
+  border: none;
+  background-color: #000;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.buttons .buttonHide:hover {
+  background-color: #f2f2f2;
+  color: #000;
+  border: 2px solid #000;
+  cursor: pointer;
+}
+
+.buttons p {
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .clearFilters {

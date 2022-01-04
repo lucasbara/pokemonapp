@@ -1,10 +1,10 @@
 import React from "react";
 import style from "./Header.module.css";
 import Logo from "../../img/logo.png";
-import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar.jsx";
-import { getAllPokemons, clearState } from "../../actions/index.js";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { clearState } from "../../actions/index.js";
 
 function Header() {
   const dispatch = useDispatch();

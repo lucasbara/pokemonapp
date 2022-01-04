@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Pokemon.module.css";
 
-function Pokemon({ name, id, types, image }) {
+function Pokemon({ name, types, image }) {
   return (
     <div>
       <div className={style.card}>

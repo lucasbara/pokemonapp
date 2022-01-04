@@ -49,7 +49,12 @@ function FilterBar() {
   if (!showFilterBar) {
     return (
       <div className={style.bigContainer}>
-        <p onClick={() => setShowFilterBar(true)}>Show filters</p>
+        <button
+          className={style.showFilter}
+          onClick={() => setShowFilterBar(true)}
+        >
+          Show filters
+        </button>
       </div>
     );
   } else {
@@ -89,9 +94,17 @@ function FilterBar() {
               <option value="more">More (+)</option>
             </select>
           </div>
-          <p className={style.clearFilters} onClick={clearAllFilters}>
-            Clear filters
-          </p>
+          <div className={style.buttons}>
+            <button className={style.buttonClear} onClick={clearAllFilters}>
+              Clear filters
+            </button>
+            <button
+              className={style.buttonHide}
+              onClick={() => setShowFilterBar(false)}
+            >
+              Hide filters
+            </button>
+          </div>
         </div>
       </div>
     );

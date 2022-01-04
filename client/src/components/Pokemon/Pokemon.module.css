@@ -37,6 +37,8 @@
   font-size: 25px;
   object-fit: cover;
   flex-grow: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .card:hover {
@@ -66,6 +68,7 @@
 .types p {
   margin: 10px 10px;
   padding: 6px;
+  padding: 6px 10px;
   background-image: radial-gradient(
     circle 588px at 31.7% 40.2%,
     rgba(225, 200, 239, 1) 21.4%,
@@ -74,6 +77,7 @@
   color: #000;
   border-radius: 12px;
   font-weight: 700;
+  box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
 }
 
 /*.cardGradient:hover {
@@ -92,11 +96,18 @@
   color: black;
 }
 
+/* PNG */
+.card img {
+  max-width: 250px;
+  max-height: 200px;
+}
+
+/* SVG 
 .card img {
   width: 150px;
   max-height: 150px;
   margin-top: 40px;
-}
+} */
 
 .cardStats {
   display: flex;
@@ -109,7 +120,7 @@
 }
 
 .pokemonName {
-  margin-top: 10px;
+  margin-top: 3px;
 }
 
 .pokemonImg {

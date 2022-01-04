@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import style from "./Pokemons.module.css";
+import Loading from "../../img/loading.gif";
+import PikachuNotFound from "../../img/pikachusearch.png";
+import FilterBar from "../FilterBar/FilterBar.jsx";
 import Pokemon from "../Pokemon/Pokemon.jsx";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../../img/loading.gif";
-import PikachuNotFound from "../../img/pikachusearch.png";
 import {
   getAllPokemons,
   getPokemonTypes,
   clearState,
 } from "../../actions/index.js";
-import FilterBar from "../FilterBar/FilterBar.jsx";
 
 function Pokemons() {
   const dispatch = useDispatch();

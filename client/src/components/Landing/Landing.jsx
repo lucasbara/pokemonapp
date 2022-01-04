@@ -1,10 +1,10 @@
 import React from "react";
+import style from "./Landing.module.css";
 import Logo from "../../img/logo.png";
 import Pikachu from "../../img/pikachu.png";
 import { AiFillHeart } from "react-icons/ai";
 import { BiCodeAlt } from "react-icons/bi";
 import { DiReact } from "react-icons/di";
-import style from "./Landing.module.css";
 import { Link } from "react-router-dom";
 
 function Landing() {

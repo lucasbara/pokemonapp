@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import style from "./PokemonDepth.module.css";
-import Header from "../Header/Header.jsx";
+import Loading from "../../img/loading.gif";
 import Footer from "../Footer/Footer.jsx";
+import Header from "../Header/Header.jsx";
 import { AiFillThunderbolt, AiFillFire } from "react-icons/ai";
 import { BsShieldFillPlus } from "react-icons/bs";
 import { GiWeight } from "react-icons/gi";
 import { FaHeart, FaRulerVertical } from "react-icons/fa";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { getPokemonById, clearPokemonById } from "../../actions";
-import Loading from "../../img/loading.gif";
-import { Link } from "react-router-dom";
 
 function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
   const dispatch = useDispatch();

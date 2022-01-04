@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// Get
+
 export function getAllPokemons() {
   return async function (dispatch) {
     try {
@@ -42,6 +44,8 @@ export function getPokemonById(id) {
   };
 }
 
+// Clear
+
 export function clearPokemonById() {
   return {
     type: "CLEAR_POKEMON_BY_ID",
@@ -53,6 +57,8 @@ export function clearState() {
     type: "CLEAR_STATE",
   };
 }
+
+// Post
 
 export function addPokemon(pokemon) {
   return async function (dispatch) {
@@ -69,8 +75,7 @@ export function addPokemon(pokemon) {
   };
 }
 
-////////////////////////////////////////////////////
-/* FilterBar */
+// Filter
 
 export function filterByType(type) {
   console.log(type);
@@ -86,6 +91,8 @@ export function filterByCreator(payload) {
     payload: payload,
   };
 }
+
+// Order
 
 export function orderPokemon(type) {
   console.log(type);

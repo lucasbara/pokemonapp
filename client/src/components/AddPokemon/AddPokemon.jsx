@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./AddPokemon.module.css";
+import Img from "../../img/addpokemon.png";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Modal from "../Modal/Modal.jsx";
@@ -9,7 +10,6 @@ import {
   addPokemon,
   clearState,
 } from "../../actions/index.js";
-import img from "../../img/addpokemon.png";
 
 function AddPokemon() {
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ function AddPokemon() {
   };
 
   useEffect(() => {
-    console.log(errors);
+    console.log(types);
   }, [errors]);
 
   // Modal on Submit button
@@ -85,7 +85,20 @@ function AddPokemon() {
       <div className={style.main}>
         <div className={style.formContainer}>
           <div className={style.formColumn}>
-            <img src={img} alt="New Pokemon"></img>
+            {input.image ? (
+              <img
+                src={input.image}
+                className={style.inputImage}
+                alt={input.name}
+              ></img>
+            ) : (
+              <img
+                src={Img}
+                className={style.defaultImage}
+                alt="New Pokemon"
+              ></img>
+            )}
+            {input.name && <p>{input.name}</p>}
           </div>
           <form className={style.form} onSubmit={handleSubmit}>
             <h1 className={style.formTitle}>Create a new pokemon</h1>
@@ -244,7 +257,7 @@ export function validateForm(input) {
   if (!input.image) {
     errors.image = "Image is required";
   } else if (
-    !/(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg)(\?[^\s[",><]*)?/.test(
+    !/(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg|.svg)(\?[^\s[",><]*)?/.test(
       input.image
     )
   ) {
