@@ -36,14 +36,12 @@ function Pokemons() {
   // Pagination
 
   useEffect(() => {
-    if (currentPage === 1) {
-      setPokemonsPerPage(9);
-    } else {
-      setPokemonsPerPage(12);
-    }
-
+    if (currentPage === 1) return setPokemonsPerPage(9);
     console.log("Current", currentPage);
     console.log("Total", totalPages);
+    console.log("Total Pokemons", totalPokemons);
+    console.log("Total Pages", totalPages);
+    return setPokemonsPerPage(12);
   }, [currentPage]);
 
   const previousPage = () => {
@@ -99,6 +97,9 @@ function Pokemons() {
         </div>
         <div className={style.buttons}>
           <button onClick={previousPage}> Previous page </button>
+          <p>
+            {currentPage} / {totalPages}
+          </p>
           <button onClick={nextPage}>Next page </button>
         </div>
       </div>

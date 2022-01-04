@@ -10,6 +10,7 @@ import {
   clearState,
 } from "../../actions/index.js";
 import img from "../../img/addpokemon.png";
+import { AiOutlineStop } from "react-icons/ai";
 
 function AddPokemon() {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function AddPokemon() {
   };
 
   const handleSubmit = (e) => {
+    if (!input.name) return alert("You must complete the form");
     e.preventDefault();
     dispatch(addPokemon(input));
     setInput({
@@ -66,6 +68,10 @@ function AddPokemon() {
       speed: "",
     });
   };
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   // Modal on Submit button
 
@@ -206,9 +212,20 @@ function AddPokemon() {
               ></input>
               {errors.speed && <p className={style.errors}>{errors.speed}</p>}
             </div>
-            <button className={style.btn} onClick={finishedForm}>
-              Create
-            </button>
+            {Object.keys(errors).length !== 0 ? (
+              <button
+                disabled="true"
+                className={style.btnError}
+                onClick={finishedForm}
+              >
+                <p>Complete the form</p>
+                <AiOutlineStop />
+              </button>
+            ) : (
+              <button className={style.btn} onClick={finishedForm}>
+                Create
+              </button>
+            )}
             {isCreated && <Modal />}
           </form>
         </div>
