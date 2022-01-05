@@ -42,7 +42,6 @@ function AddPokemon() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
     setErrors(
       validateForm({
         ...input,
@@ -68,10 +67,6 @@ function AddPokemon() {
       speed: "",
     });
   };
-
-  useEffect(() => {
-    console.log(types);
-  }, [errors]);
 
   // Modal on Submit button
 
