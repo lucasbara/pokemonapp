@@ -99,4 +99,6 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
   }
 }
 
+/* <p>{pokemonByID.id}</p> */
+
 export default PokemonDepth;

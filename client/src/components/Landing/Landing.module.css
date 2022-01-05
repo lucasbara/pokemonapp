@@ -12,7 +12,13 @@
 
 body {
   background: linear-gradient(120deg, #f1f1f1 50%, #4585c1 0%);
+  /*background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://i.imgur.com/tYSE9Ga.jpg");*/
   width: 100vw;
+  height: 100vh;
   font-family: "Roboto", sans-serif;
 }
 

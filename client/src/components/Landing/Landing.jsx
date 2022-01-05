@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function Landing() {
   return (
-    <div>
+    <div className={style.bigContainer}>
       <div className={style.header}>
         <img src={Logo} alt="Pokémon Logo" className={style.logo} />
         <Link to="/home">
