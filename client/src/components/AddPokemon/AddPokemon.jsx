@@ -132,13 +132,19 @@ function AddPokemon() {
               >
                 <option value="Type 1">Type 1</option>
                 {types &&
-                  types.map((type) => {
-                    return (
-                      <option value={type.id} key={type.id}>
-                        {type.name}
-                      </option>
-                    );
-                  })}
+                  types
+                    .sort((a, b) => {
+                      if (a.name < b.name) return -1;
+                      if (a.name > b.name) return 1;
+                      return 0;
+                    })
+                    .map((type) => {
+                      return (
+                        <option value={type.id} key={type.id}>
+                          {type.name}
+                        </option>
+                      );
+                    })}
               </select>
               <select
                 name="type2"
@@ -147,13 +153,19 @@ function AddPokemon() {
               >
                 <option value="Type 2">Type 2</option>
                 {types &&
-                  types.map((type) => {
-                    return (
-                      <option value={type.id} key={type.id}>
-                        {type.name}
-                      </option>
-                    );
-                  })}
+                  types
+                    .sort((a, b) => {
+                      if (a.name < b.name) return -1;
+                      if (a.name > b.name) return 1;
+                      return 0;
+                    })
+                    .map((type) => {
+                      return (
+                        <option value={type.id} key={type.id}>
+                          {type.name}
+                        </option>
+                      );
+                    })}
               </select>
               {errors.type1 && <p className={style.errors}>{errors.type1}</p>}
             </div>

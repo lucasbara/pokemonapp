@@ -66,13 +66,19 @@ function FilterBar() {
             <select onChange={filterType} value={selectType}>
               <option value="type">Type</option>
               {types &&
-                types.map((type) => {
-                  return (
-                    <option value={type.name} key={type.id}>
-                      {type.name}
-                    </option>
-                  );
-                })}
+                types
+                  .sort((a, b) => {
+                    if (a.name < b.name) return -1;
+                    if (a.name > b.name) return 1;
+                    return 0;
+                  })
+                  .map((type) => {
+                    return (
+                      <option value={type.name} key={type.id}>
+                        {type.name}
+                      </option>
+                    );
+                  })}
             </select>
             <select onChange={filterCreator} value={selectCreator}>
               <option>Source</option>
