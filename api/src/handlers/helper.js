@@ -8,7 +8,7 @@ let dbId = 40;
 async function getPokemonsAPI() {
   try {
     const response = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=50"
+      "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=40"
     );
     const data = Promise.all(
       response.data.results.map(async (pokemon) => {
@@ -22,7 +22,8 @@ async function getPokemonsAPI() {
           speed: subRequest.data.stats[4].base_stat,
           height: subRequest.data.height,
           weight: subRequest.data.weight,
-          image: subRequest.data.sprites.other.dream_world.front_default,
+          /*image: subRequest.data.sprites.other.dream_world.front_default*/
+          image: subRequest.data.sprites.other.home.front_default,
           types: subRequest.data.types.map((type) => {
             return { name: type.type.name };
           }),
@@ -37,11 +38,26 @@ async function getPokemonsAPI() {
   }
 }
 
+async function testingPokemons() {
+  const dbPokemons = await Pokemon.findAll({
+    include: {
+      model: Type,
+      // It only brings name from types
+      through: {
+        attributes: [],
+      },
+      attributes: ["name"],
+    },
+  });
+  return dbPokemons;
+}
+
 // Get all pokemons included DB and API
 async function getAllPokemons() {
   const dbPokemons = await Pokemon.findAll({
     include: {
       model: Type,
+      // It only brings name from types
       through: {
         attributes: [],
       },
@@ -57,7 +73,7 @@ async function getAllPokemons() {
 async function addPokemon(req, res) {
   const { hp, attack, defense, speed, height, weight, image, type1, type2 } =
     req.body;
-  let name = req.body.name ? req.body.name.toLowerCase() : req.body;
+  let name = req.body.name.toLowerCase();
   let pokemon = {
     id: ++dbId,
     name,
@@ -109,19 +125,5 @@ module.exports = {
   getAllPokemons,
   addPokemon,
   getPokemonTypes,
+  testingPokemons,
 };
-
-// DB
-
-/*   let pokemonResult = await Pokemon.create({
-          name: subRequest.data.name,
-          id: subRequest.data.id,
-          hp: subRequest.data.stats[0].base_stat,
-          attack: subRequest.data.stats[1].base_stat,
-          defense: subRequest.data.stats[2].base_stat,
-          speed: subRequest.data.stats[4].base_stat,
-          height: subRequest.data.height,
-          weight: subRequest.data.weight,
-          image: subRequest.data.sprites.other.dream_world.front_default,
-          created: false,
-        });*/

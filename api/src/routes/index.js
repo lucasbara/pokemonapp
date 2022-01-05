@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const axios = require("axios");
 const {
   getPokemonsAPI,
   addPokemon,
   getPokemonTypes,
   getAllPokemons,
+  testingPokemons,
 } = require("../handlers/helper.js");
 const { Pokemon, Type } = require("../db.js");
 // Importar todos los routers;
@@ -15,11 +15,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-/*router.get("/pokemons", async (req, res) => {
-  const pokemons = await getPokemonsAPI();
-  return res.json(pokemons);
-}); */
-
+// Get all Pokemons
 router.get("/pokemons", async (req, res) => {
   let { name } = req.query;
   if (name) {
@@ -28,7 +24,6 @@ router.get("/pokemons", async (req, res) => {
         name: req.query.name.toLowerCase(),
       },
     });
-    console.log(pokemonDB);
     if (pokemonDB.length) {
       return res.json(pokemonDB);
     } else {
@@ -44,9 +39,10 @@ router.get("/pokemons", async (req, res) => {
     }
   }
   const pokemons = await getAllPokemons();
-  return res.json(pokemons);
+  return res.status(200).json(pokemons);
 });
 
+// Get pokemon ID
 router.get("/pokemons/:idPokemon", async (req, res) => {
   const id = Number(req.params.idPokemon);
   if (typeof id === "number") {
@@ -77,13 +73,20 @@ router.get("/pokemons/:idPokemon", async (req, res) => {
   return res.send("El ID debe ser un número").status(404);
 });
 
+// Add Pokemon
 router.post("/pokemons", async (req, res) => {
   await addPokemon(req, res);
 });
 
+// Get types
 router.get("/types", async (req, res) => {
   const pokemonTypes = await getPokemonTypes();
   return res.json(pokemonTypes);
+});
+
+router.get("/test", async (req, res) => {
+  const test = await testingPokemons();
+  return res.json(test);
 });
 
 module.exports = router;
