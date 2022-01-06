@@ -18,8 +18,11 @@ body {
     ),
     url("https://i.imgur.com/tYSE9Ga.jpg");*/
   width: 100vw;
-  height: 100vh;
   font-family: "Roboto", sans-serif;
+}
+
+.bigContainer {
+  height: 100vh;
 }
 
 .header {
@@ -89,28 +92,6 @@ body {
   animation-duration: 1s;
 }
 
-@keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .main p {
   width: 33vw;
   margin-left: 20px;
@@ -137,5 +118,29 @@ body {
 
 .footer p {
   word-spacing: 1px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+/* CSS ANIMATIONS */
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

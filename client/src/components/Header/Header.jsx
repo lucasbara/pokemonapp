@@ -8,6 +8,7 @@ import { clearState } from "../../actions/index.js";
 
 function Header() {
   const dispatch = useDispatch();
+
   const goBackHome = () => {
     dispatch(clearState());
   };

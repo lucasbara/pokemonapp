@@ -259,7 +259,7 @@ export function validateForm(input) {
   if (!input.name) {
     errors.name = "Name is required";
   } else if (!/^[A-Za-z]+$/.test(input.name)) {
-    errors.name = "Name must be a text string with lowercase letters";
+    errors.name = "Name must be plain text";
   }
   if (!input.image) {
     errors.image = "Image is required";

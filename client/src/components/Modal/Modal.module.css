@@ -1,7 +1,7 @@
 .bigContainer {
   position: absolute;
-  width: 100vw;
-  height: 120vh;
+  width: 150vw;
+  height: 150vh;
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(0.5px);
   z-index: 5;

@@ -7,9 +7,11 @@ import { getPokemonByName } from "../../actions/index.js";
 function SearchBar() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search) {
@@ -17,6 +19,7 @@ function SearchBar() {
       setSearch("");
     }
   };
+
   return (
     <div className={style.container}>
       <form>

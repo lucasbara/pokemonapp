@@ -42,11 +42,4 @@ function Landing() {
   );
 }
 
-/*
-        <div className={style.mainBottom}>
-          <img src={Landing1} alt="Pokemon Go" />
-          <img src={Landing2} alt="Ash and Pikachu" />
-        </div>
-        */
-
 export default Landing;

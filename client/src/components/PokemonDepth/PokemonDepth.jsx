@@ -11,14 +11,16 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonById, clearPokemonById } from "../../actions";
 
-function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
+function PokemonDepth() {
   const dispatch = useDispatch();
   const pokemonByID = useSelector((state) => state.pokemonById);
   let { id } = useParams();
+
   useEffect(() => {
     dispatch(getPokemonById(id));
     dispatch(clearPokemonById());
   }, []);
+
   if (pokemonByID.length === 0) {
     return (
       <div>
@@ -98,7 +100,5 @@ function PokemonDepth({ name, types, image, hp, attack, defense, speed }) {
     );
   }
 }
-
-/* <p>{pokemonByID.id}</p> */
 
 export default PokemonDepth;

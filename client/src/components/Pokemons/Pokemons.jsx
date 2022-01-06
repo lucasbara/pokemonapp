@@ -16,8 +16,8 @@ function Pokemons() {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage, setPokemonsPerPage] = useState(9);
-  const indexOfLastPost = currentPage * pokemonsPerPage;
-  const indexOfFirstPost = indexOfLastPost - pokemonsPerPage;
+  const indexOfLastPost = currentPage * pokemonsPerPage; // 1: 1 * 9 , 2: 18
+  const indexOfFirstPost = indexOfLastPost - pokemonsPerPage; // 1: 9 - 9 2: 18-9
   const totalPokemons = useSelector((state) => state.filteredPokemons);
   const totalPages = Math.ceil(totalPokemons.length / pokemonsPerPage);
   const showPokemons = useSelector((state) =>
@@ -34,12 +34,6 @@ function Pokemons() {
   }, []);
 
   // Pagination
-
-  useEffect(() => {
-    if (currentPage === 1) return setPokemonsPerPage(9);
-    console.log("Total Pokemons", totalPokemons.length);
-    return setPokemonsPerPage(12);
-  }, [currentPage]);
 
   const previousPage = () => {
     if (currentPage === 1) return;

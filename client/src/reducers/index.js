@@ -8,53 +8,21 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_ALL_POKEMONS":
-      return {
-        ...state,
-        allPokemons: action.payload,
-        filteredPokemons: action.payload,
-      };
-    case "CLEAR_STATE":
-      return {
-        ...state,
-        filteredPokemons: state.allPokemons,
-        addedPokemon: false,
-      };
     case "ADD_POKEMON":
-      console.log(action.payload);
       return {
         ...state,
         addedPokemon: action.payload,
-      };
-    case "GET_POKEMON_BY_NAME":
-      const searchedPokemon = state.allPokemons.filter((p) => {
-        return p.name === action.payload.toLowerCase();
-      });
-      if (searchedPokemon.length) {
-        return {
-          ...state,
-          filteredPokemons: searchedPokemon,
-        };
-      } else {
-        return {
-          ...state,
-          filteredPokemons: false,
-        };
-      }
-    case "GET_POKEMON_BY_ID":
-      return {
-        ...state,
-        pokemonById: action.payload,
       };
     case "CLEAR_POKEMON_BY_ID":
       return {
         ...state,
         pokemonById: [],
       };
-    case "GET_POKEMON_TYPES":
+    case "CLEAR_STATE":
       return {
         ...state,
-        pokemonTypes: [...action.payload],
+        filteredPokemons: state.allPokemons,
+        addedPokemon: false,
       };
     case "FILTER_BY_TYPE":
       const typeFiltered = state.allPokemons.filter((p) => {
@@ -88,6 +56,37 @@ const rootReducer = (state = initialState, action) => {
           filteredPokemons: false,
         };
       }
+    case "GET_ALL_POKEMONS":
+      return {
+        ...state,
+        allPokemons: action.payload,
+        filteredPokemons: action.payload,
+      };
+    case "GET_POKEMON_BY_ID":
+      return {
+        ...state,
+        pokemonById: action.payload,
+      };
+    case "GET_POKEMON_BY_NAME":
+      const searchedPokemon = state.allPokemons.filter((p) => {
+        return p.name.includes(action.payload);
+      });
+      if (searchedPokemon) {
+        return {
+          ...state,
+          filteredPokemons: searchedPokemon,
+        };
+      } else {
+        return {
+          ...state,
+          filteredPokemons: false,
+        };
+      }
+    case "GET_POKEMON_TYPES":
+      return {
+        ...state,
+        pokemonTypes: [...action.payload],
+      };
 
     case "ORDER_ASCENDING":
       return {
