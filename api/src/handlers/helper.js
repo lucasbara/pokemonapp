@@ -38,20 +38,6 @@ async function getPokemonsAPI() {
   }
 }
 
-async function testingPokemons() {
-  const dbPokemons = await Pokemon.findAll({
-    include: {
-      model: Type,
-      // It only brings name from types
-      through: {
-        attributes: [],
-      },
-      attributes: ["name"],
-    },
-  });
-  return dbPokemons;
-}
-
 // Get all pokemons included DB and API
 async function getAllPokemons() {
   const dbPokemons = await Pokemon.findAll({
@@ -67,6 +53,37 @@ async function getAllPokemons() {
   const ApiPokemons = await getPokemonsAPI();
 
   return [...dbPokemons, ...ApiPokemons];
+}
+
+// Get pokemon ID
+async function getPokemonId() {
+  const id = Number(req.params.idPokemon);
+  if (typeof id === "number") {
+    const pokemonDb = await Pokemon.findOne({
+      where: {
+        id: id,
+      },
+      include: {
+        model: Type,
+        through: {
+          attributes: [],
+        },
+        attributes: ["name"],
+      },
+    });
+    if (pokemonDb) {
+      return res.json(pokemonDb);
+    } else {
+      const pokemonsApi = await getPokemonsAPI();
+      const foundPokemon = pokemonsApi.find((p) => p.id === id);
+      if (foundPokemon) {
+        return res.json(foundPokemon);
+      } else {
+        return res.json("El ID ingresado no pertenece a ningún pokemon");
+      }
+    }
+  }
+  return res.send("El ID debe ser un número").status(404);
 }
 
 // Add pokemon to DB
@@ -121,9 +138,8 @@ async function getPokemonTypes() {
 }
 
 module.exports = {
+  addPokemon,
   getPokemonsAPI,
   getAllPokemons,
-  addPokemon,
   getPokemonTypes,
-  testingPokemons,
 };

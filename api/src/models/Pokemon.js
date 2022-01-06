@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       created: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING, // Probar boolean
         defaultValue: "true",
       },
     },
