@@ -37,8 +37,6 @@ const PokemonProfile = ({ allTypes, children, pokemon }) => {
   const pokemonType1 = allTypes?.find((t) => t.id === Number(type1)).name;
   const pokemonType2 = allTypes?.find((t) => t.id === Number(type2)).name;
 
-  console.log(types, type1, type2, typeColors?.[types?.[0]["name"]]);
-
   return searchedPokemon.length === 0 && !pokemon ? (
     <div className={styles.loading}>
       <LoadingSpinner />
