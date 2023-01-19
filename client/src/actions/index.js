@@ -5,10 +5,12 @@ import axios from "axios";
 export function getAllPokemons() {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/pokemons`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/pokemons`
+      );
       dispatch({ type: "GET_ALL_POKEMONS", payload: response.data });
-    } catch (error) {
-      console.log("Get all pokemons:", error);
+    } catch (err) {
+      throw err;
     }
   };
 }
@@ -16,16 +18,17 @@ export function getAllPokemons() {
 export function getPokemonTypes() {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/types");
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/types`
+      );
       dispatch({ type: "GET_POKEMON_TYPES", payload: response.data });
-    } catch (error) {
-      console.log("Get pokemon types:", error);
+    } catch (err) {
+      throw err;
     }
   };
 }
 
 export function getPokemonByName(payload) {
-  console.log("Action", payload);
   return {
     type: "GET_POKEMON_BY_NAME",
     payload: payload,
@@ -35,7 +38,9 @@ export function getPokemonByName(payload) {
 export function getPokemonById(id) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/pokemons/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/pokemons/${id}`
+      );
       dispatch({ type: "GET_POKEMON_BY_ID", payload: response.data });
     } catch (error) {
       console.log(error);
@@ -65,11 +70,10 @@ export function addPokemon(pokemon) {
     try {
       dispatch({ type: "ADD_POKEMON", payload: true });
       const response = await axios.post(
-        "http://localhost:3001/pokemons",
+        `${process.env.REACT_APP_API_URL}/pokemons`,
         pokemon
       );
     } catch (error) {
-      console.log(error);
       dispatch({ type: "ADD_POKEMON", payload: false });
     }
   };

@@ -4,23 +4,39 @@ import Pikachu from "../../img/pikachu.png";
 import { Link } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Button from "../Button/Button";
+import { motion } from "framer-motion";
 
 const Landing = () => {
   return (
     <Layout>
-      <div className={styles.container}>
-        <div className={styles.text}>
+      <motion.div className={styles.container}>
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 1 }}
+          className={styles.text}
+        >
           <h1>Gotta Catch 'Em All!</h1>
-          <p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+          >
             All the Pokémon data you'll ever need in one place, easily
             accessible through a modern webpage.
-          </p>
+          </motion.p>
           <Link to="/home">
             <Button>See Pokemons</Button>
           </Link>
-        </div>
-        <img src={Pikachu} alt="Charizard" />
-      </div>
+        </motion.div>
+        <motion.img
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 1 }}
+          src={Pikachu}
+          alt="Charizard"
+        />
+      </motion.div>
     </Layout>
   );
 };

@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./Pokemon.module.css";
+import { typeColors } from "../../lib/utils";
 
-function Pokemon({ name, types, image }) {
+function Pokemon({ info }) {
+  useEffect(() => {
+    console.log(info);
+  }, [info.types]);
   return (
-    <div>
-      <div className={style.card}>
-        <img src={image} alt={name} className={style.pokemonImg} />
-        <div className={style.cardGradient}>
-          <p className={style.pokemonName}>{name}</p>
-          <div className={style.types}>
-            {types && types.map((type) => <p key={type.id}>{type.name}</p>)}
-          </div>
+    <div className={style.card}>
+      <div
+        className={style["card-header"]}
+        style={{ backgroundColor: typeColors[info.types[0]["name"]] }}
+      >
+        <img src={info.image} alt={info.name} />
+      </div>
+      <div className={style.bottom}>
+        <p className={style.name}>{info.name}</p>
+        <div className={style.types}>
+          {info.types?.map((type) => (
+            <p key={type.id}>{type.name}</p>
+          ))}
         </div>
       </div>
     </div>
