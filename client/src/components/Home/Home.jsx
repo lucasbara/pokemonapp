@@ -70,7 +70,7 @@ const Home = () => {
         )}
       </div>
       <div className={styles.buttons}>
-        {allPokemons.length && (
+        {allPokemons.length ? (
           <>
             <Button onClick={previousPage} className={styles.test}>
               <MdKeyboardArrowLeft />
@@ -82,7 +82,7 @@ const Home = () => {
               <MdKeyboardArrowRight />
             </Button>{" "}
           </>
-        )}
+        ) : null}
       </div>
     </div>
   );
