@@ -69,7 +69,10 @@ const Home = () => {
           <LoadingSpinner />
         )}
       </div>
-      <div className={styles.buttons}>
+      <div
+        className={styles.buttons}
+        style={{ opacity: allPokemons.length ? "100" : 0 }}
+      >
         {allPokemons.length ? (
           <>
             <Button onClick={previousPage} className={styles.test}>
