@@ -26,4 +26,4 @@
 
 ## Deploy down here 👇
 
-https://the-poke-api.netlify.app/
+https://pokemon-xi-six.vercel.app/
