@@ -2,8 +2,8 @@ import axios from "axios";
 
 // Get
 
-export function getAllPokemons() {
-  return async function (dispatch) {
+export const getAllPokemons = () => {
+  return async (dispatch) => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/pokemons`
@@ -15,7 +15,7 @@ export function getAllPokemons() {
   };
 }
 
-export function getPokemonTypes() {
+export const getPokemonTypes = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
@@ -28,36 +28,36 @@ export function getPokemonTypes() {
   };
 }
 
-export function getPokemonByName(payload) {
+export const getPokemonByName = (payload) => {
   return {
     type: "GET_POKEMON_BY_NAME",
     payload: payload,
   };
 }
 
-export function getPokemonById(id) {
+export const getPokemonById = (id) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/pokemons/${id}`
       );
       dispatch({ type: "GET_POKEMON_BY_ID", payload: response.data });
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
       dispatch({ type: "GET_POKEMON_BY_ID", payload: null });
+      throw err;
     }
   };
 }
 
 // Clear
 
-export function clearPokemonById() {
+export const clearPokemonById = () => {
   return {
     type: "CLEAR_POKEMON_BY_ID",
   };
 }
 
-export function clearState() {
+export const clearState = () => {
   return {
     type: "CLEAR_STATE",
   };
@@ -65,7 +65,7 @@ export function clearState() {
 
 // Post
 
-export function addPokemon(pokemon) {
+export const addPokemon = (pokemon) => {
   return async function (dispatch) {
     try {
       dispatch({ type: "ADD_POKEMON", payload: true });
@@ -81,43 +81,38 @@ export function addPokemon(pokemon) {
 
 // Filter
 
-export function filterByType(type) {
-  console.log(type);
+export const filterByType(type) => {
   return {
     type: "FILTER_BY_TYPE",
     payload: type,
   };
 }
 
-export function filterByCreator(payload) {
+export const filterByCreator = (payload) => {
   return {
     type: "FILTER_BY_CREATOR",
     payload: payload,
   };
-}
+};
 
 // Order
 
-export function orderPokemon(type) {
-  console.log(type);
+export const orderPokemon = (type) => {
   if (type === "asc") {
     return {
       type: "ORDER_ASCENDING",
     };
-  }
-  if (type === "desc") {
+  } else if (type === "desc") {
     return {
       type: "ORDER_DESCENDING",
     };
-  }
-  if (type === "less") {
+  } else if (type === "less") {
     return {
       type: "ORDER_ATTACK_DESCENDING",
     };
-  }
-  if (type === "more") {
+  } else if (type === "more") {
     return {
       type: "ORDER_ATTACK_ASCENDING",
     };
   }
-}
+};
