@@ -54,3 +54,10 @@
     grid-template-rows: 50% 50%;
   }
 }
+
+@media screen and (max-height: 768px) {
+  .pokemons {
+    min-height: 80%;
+    height: 80%;
+  }
+}
