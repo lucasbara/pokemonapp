@@ -8,6 +8,7 @@ import { clearState } from "../../actions/index.js";
 import { useMedia } from "react-use";
 import Button from "../Button/Button";
 import { MdClose, MdMenu } from "react-icons/md";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,14 +17,7 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const items = (
-    <>
-      <SearchBar />
-      <Link to="/addpokemon" className={styles["add-pokemon"]}>
-        Create a new Pokemon ⚡
-      </Link>
-    </>
-  );
+  const location = useLocation();
 
   return (
     <header className={styles["header-container"]}>
@@ -44,7 +38,7 @@ const Header = () => {
           </Button>
           {isOpen && (
             <div className={styles["header-mobile"]}>
-              <SearchBar />
+              {location.pathname === "/home" && <SearchBar />}
               <Link
                 to="/addpokemon"
                 className={styles["add-pokemon"]}
@@ -57,7 +51,7 @@ const Header = () => {
         </>
       ) : (
         <>
-          <SearchBar />
+          {location.pathname === "/home" && <SearchBar />}
           <Link to="/addpokemon" className={styles["add-pokemon"]}>
             Create a new Pokemon ⚡
           </Link>
