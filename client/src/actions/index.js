@@ -13,7 +13,7 @@ export const getAllPokemons = () => {
       throw err;
     }
   };
-}
+};
 
 export const getPokemonTypes = () => {
   return async function (dispatch) {
@@ -26,14 +26,14 @@ export const getPokemonTypes = () => {
       throw err;
     }
   };
-}
+};
 
 export const getPokemonByName = (payload) => {
   return {
     type: "GET_POKEMON_BY_NAME",
     payload: payload,
   };
-}
+};
 
 export const getPokemonById = (id) => {
   return async function (dispatch) {
@@ -47,7 +47,7 @@ export const getPokemonById = (id) => {
       throw err;
     }
   };
-}
+};
 
 // Clear
 
@@ -55,13 +55,13 @@ export const clearPokemonById = () => {
   return {
     type: "CLEAR_POKEMON_BY_ID",
   };
-}
+};
 
 export const clearState = () => {
   return {
     type: "CLEAR_STATE",
   };
-}
+};
 
 // Post
 
@@ -77,16 +77,16 @@ export const addPokemon = (pokemon) => {
       dispatch({ type: "ADD_POKEMON", payload: false });
     }
   };
-}
+};
 
 // Filter
 
-export const filterByType(type) => {
+export const filterByType = (type) => {
   return {
     type: "FILTER_BY_TYPE",
     payload: type,
   };
-}
+};
 
 export const filterByCreator = (payload) => {
   return {
