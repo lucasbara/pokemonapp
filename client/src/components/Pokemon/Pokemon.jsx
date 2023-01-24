@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from "./Pokemon.module.css";
 import { typeColors } from "../../lib/utils";
 
-function Pokemon({ info }) {
-  useEffect(() => {
-    console.log(info);
-  }, [info.types]);
+const Pokemon = ({ info }) => {
   return (
     <div className={style.card}>
       <div
@@ -24,6 +21,6 @@ function Pokemon({ info }) {
       </div>
     </div>
   );
-}
+};
 
 export default Pokemon;
